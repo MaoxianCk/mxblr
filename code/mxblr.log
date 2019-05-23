@@ -1,0 +1,205 @@
+2019-05-23 19:09:10.039  INFO 2972 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 2972 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 19:09:10.039  INFO 2972 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 19:09:11.070  WARN 2972 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.mxblr.dao]' package. Please check your configuration.
+2019-05-23 19:09:11.227  WARN 2972 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.mxblr]' package. Please check your configuration.
+2019-05-23 19:09:11.414  INFO 2972 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7e2387fa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 19:09:11.633  INFO 2972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 19:09:11.649  INFO 2972 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 19:09:11.649  INFO 2972 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 19:09:11.742  INFO 2972 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 19:09:11.742  INFO 2972 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1625 ms
+2019-05-23 19:09:12.008  INFO 2972 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-05-23 19:09:12.102  INFO 2972 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-23 19:09:12.492  INFO 2972 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-05-23 19:09:12.508  INFO 2972 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-05-23 19:09:12.539  INFO 2972 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-05-23 19:09:12.570  INFO 2972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-05-23 19:09:12.586  INFO 2972 --- [main] com.mxblr.MxblrApplication               : Started MxblrApplication in 2.922 seconds (JVM running for 3.802)
+2019-05-23 19:09:26.240  INFO 2972 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-23 19:09:26.241  INFO 2972 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-05-23 19:09:26.248  INFO 2972 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2019-05-23 22:32:43.321  INFO 6016 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 6016 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:32:43.325  INFO 6016 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:32:44.479  INFO 6016 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d24a560f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:32:44.782  INFO 6016 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:32:44.806  INFO 6016 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:32:44.807  INFO 6016 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:32:44.929  INFO 6016 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:32:44.929  INFO 6016 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1549 ms
+2019-05-23 22:32:44.988  WARN 6016 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagController' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagServiceImpl' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'tagServiceImpl': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2019-05-23 22:32:44.991  INFO 6016 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-23 22:32:45.005  WARN 6016 --- [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-05-23 22:32:45.013  INFO 6016 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-23 22:32:45.016 ERROR 6016 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   tagController defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]
+┌─────┐
+|  tagServiceImpl defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]
+└─────┘
+
+
+2019-05-23 22:35:51.550  INFO 12360 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 12360 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:35:51.553  INFO 12360 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:35:52.563  INFO 12360 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$12c1bb6f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:35:52.780  INFO 12360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:35:52.797  INFO 12360 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:35:52.797  INFO 12360 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:35:52.871  INFO 12360 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:35:52.872  INFO 12360 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1266 ms
+2019-05-23 22:35:52.913  WARN 12360 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagController' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagServiceImpl' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'tagServiceImpl': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2019-05-23 22:35:52.916  INFO 12360 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-23 22:35:52.924  WARN 12360 --- [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-05-23 22:35:52.931  INFO 12360 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-23 22:35:52.933 ERROR 12360 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   tagController defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]
+┌─────┐
+|  tagServiceImpl defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]
+└─────┘
+
+
+2019-05-23 22:36:15.315  INFO 6280 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 6280 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:36:15.317  INFO 6280 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:36:16.439  INFO 6280 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6d0aef5a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:36:16.656  INFO 6280 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:36:16.674  INFO 6280 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:36:16.674  INFO 6280 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:36:16.749  INFO 6280 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:36:16.750  INFO 6280 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1385 ms
+2019-05-23 22:36:16.790  WARN 6280 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagController' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagServiceImpl' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'tagServiceImpl': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2019-05-23 22:36:16.792  INFO 6280 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-23 22:36:16.802  WARN 6280 --- [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-05-23 22:36:16.808  INFO 6280 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-23 22:36:16.810 ERROR 6280 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   tagController defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]
+┌─────┐
+|  tagServiceImpl defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]
+└─────┘
+
+
+2019-05-23 22:37:50.163  INFO 6256 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 6256 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:37:50.165  INFO 6256 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:37:51.142  INFO 6256 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ce65c097] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:37:51.364  INFO 6256 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:37:51.382  INFO 6256 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:37:51.383  INFO 6256 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:37:51.461  INFO 6256 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:37:51.461  INFO 6256 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1249 ms
+2019-05-23 22:37:51.501  WARN 6256 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagController' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagServiceImpl' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'tagServiceImpl': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2019-05-23 22:37:51.503  INFO 6256 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-23 22:37:51.512  WARN 6256 --- [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-05-23 22:37:51.519  INFO 6256 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-23 22:37:51.520 ERROR 6256 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   tagController defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]
+┌─────┐
+|  tagServiceImpl defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]
+└─────┘
+
+
+2019-05-23 22:38:15.700  INFO 1640 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 1640 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:38:15.703  INFO 1640 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:38:16.633  INFO 1640 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c604f9e0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:38:16.868  INFO 1640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:38:16.885  INFO 1640 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:38:16.885  INFO 1640 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:38:16.961  INFO 1640 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:38:16.961  INFO 1640 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1215 ms
+2019-05-23 22:38:17.002  WARN 1640 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagController' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'tagServiceImpl' defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'tagServiceImpl': Requested bean is currently in creation: Is there an unresolvable circular reference?
+2019-05-23 22:38:17.004  INFO 1640 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-05-23 22:38:17.013  WARN 1640 --- [main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-05-23 22:38:17.019  INFO 1640 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-05-23 22:38:17.021 ERROR 1640 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The dependencies of some of the beans in the application context form a cycle:
+
+   tagController defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\controller\TagController.class]
+┌─────┐
+|  tagServiceImpl defined in file [F:\DATE\GIT\mxblr\code\target\classes\com\mxblr\service\impl\TagServiceImpl.class]
+└─────┘
+
+
+2019-05-23 22:41:31.781  INFO 8696 --- [main] com.mxblr.MxblrApplication               : Starting MxblrApplication on Ck-sama with PID 8696 (F:\DATE\GIT\mxblr\code\target\classes started by 78531 in F:\DATE\GIT\mxblr\code)
+2019-05-23 22:41:31.783  INFO 8696 --- [main] com.mxblr.MxblrApplication               : No active profile set, falling back to default profiles: default
+2019-05-23 22:41:33.401  INFO 8696 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d311b372] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-23 22:41:33.626  INFO 8696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-05-23 22:41:33.643  INFO 8696 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-05-23 22:41:33.644  INFO 8696 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-23 22:41:33.725  INFO 8696 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-05-23 22:41:33.726  INFO 8696 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1885 ms
+2019-05-23 22:41:34.386  INFO 8696 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-05-23 22:41:34.478  INFO 8696 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-23 22:41:34.607  INFO 8696 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-05-23 22:41:34.620  INFO 8696 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-05-23 22:41:34.642  INFO 8696 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-05-23 22:41:34.752  INFO 8696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-05-23 22:41:34.754  INFO 8696 --- [main] com.mxblr.MxblrApplication               : Started MxblrApplication in 3.275 seconds (JVM running for 3.806)
+2019-05-23 22:41:43.744  INFO 8696 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-05-23 22:41:43.744  INFO 8696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-05-23 22:41:43.750  INFO 8696 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-05-23 22:42:29.665  INFO 8696 --- [http-nio-8080-exec-8] com.mxblr.utils.MyLog                    : Request : /user/tag/getTagList
+2019-05-23 22:42:29.713  INFO 8696 --- [http-nio-8080-exec-8] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
