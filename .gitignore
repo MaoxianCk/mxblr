@@ -1,5 +1,5 @@
 HELP.md
-/target/
+code/target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -30,3 +30,8 @@ HELP.md
 
 ### dataBase ###
 .pdb
+*.gz
+*.class
+*.class
+*.class
+*.class
