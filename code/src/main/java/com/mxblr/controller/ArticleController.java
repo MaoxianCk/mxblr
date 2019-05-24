@@ -19,9 +19,9 @@ import java.util.List;
  */
 
 @RequestMapping("/user/article")
-@RestController
+@RestController("ArticleController")
 public class ArticleController extends BaseController {
-    private ArticleService articleService;
+    private final ArticleService articleService;
 
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;

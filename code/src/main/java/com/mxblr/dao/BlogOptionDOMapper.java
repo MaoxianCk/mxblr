@@ -1,7 +1,11 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.BlogOptionDO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component
 public interface BlogOptionDOMapper {
     int deleteByPrimaryKey(Integer optionId);
 

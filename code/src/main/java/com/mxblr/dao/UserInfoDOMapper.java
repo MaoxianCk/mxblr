@@ -1,7 +1,11 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.UserInfoDO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component
 public interface UserInfoDOMapper {
     int deleteByPrimaryKey(Integer userInfoId);
 

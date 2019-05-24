@@ -1,7 +1,11 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.NoticeEmailDO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+@Mapper
+@Component
 public interface NoticeEmailDOMapper {
     int deleteByPrimaryKey(Integer emailId);
 
