@@ -2,6 +2,7 @@ package com.mxblr.service.impl;
 
 import com.mxblr.dao.TagDOMapper;
 import com.mxblr.data.vo.TagVO;
+import com.mxblr.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

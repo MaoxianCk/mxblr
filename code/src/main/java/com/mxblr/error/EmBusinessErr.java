@@ -9,6 +9,9 @@ public enum EmBusinessErr implements CommonError {
     //用户相关错误
     USER_NOT_EXIST(201, "用户不存在"),
     USER_LOGIN_FAILED(202, "用户名或密码不正确"),
+
+    //文章相关错误
+    ARTICLE_NOT_EXISTS(301,"文章不存在"),
 	;
 
     private int errCode;

@@ -1,9 +1,16 @@
-package com.mxblr.data.dataObject;
+package com.mxblr.data.vo;
 
 import java.util.Date;
 
-public class ArticleDO {
+/**
+ * @author Ck
+ * #date 2019/05/24 13:55
+ * 首页的文章列表
+ */
+public class ArticleInfoListVO {
     private Integer articleId;
+
+    private Integer articleContentId;
 
     private String title;
 
@@ -11,17 +18,11 @@ public class ArticleDO {
 
     private String summary;
 
-    private Integer userId;
-
-    private Integer tagId;
+    private Integer userName;
 
     private Date createdTime;
 
-    private Byte createdMonth;
-
     private Date modifiedTime;
-
-    private Boolean status;
 
     public Integer getArticleId() {
         return articleId;
@@ -31,12 +32,20 @@ public class ArticleDO {
         this.articleId = articleId;
     }
 
+    public Integer getArticleContentId() {
+        return articleContentId;
+    }
+
+    public void setArticleContentId(Integer articleContentId) {
+        this.articleContentId = articleContentId;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getImageUrl() {
@@ -44,7 +53,7 @@ public class ArticleDO {
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
+        this.imageUrl = imageUrl;
     }
 
     public String getSummary() {
@@ -52,23 +61,15 @@ public class ArticleDO {
     }
 
     public void setSummary(String summary) {
-        this.summary = summary == null ? null : summary.trim();
+        this.summary = summary;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUserName() {
+        return userName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(Integer tagId) {
-        this.tagId = tagId;
+    public void setUserName(Integer userName) {
+        this.userName = userName;
     }
 
     public Date getCreatedTime() {
@@ -79,27 +80,11 @@ public class ArticleDO {
         this.createdTime = createdTime;
     }
 
-    public Byte getCreatedMonth() {
-        return createdMonth;
-    }
-
-    public void setCreatedMonth(Byte createdMonth) {
-        this.createdMonth = createdMonth;
-    }
-
     public Date getModifiedTime() {
         return modifiedTime;
     }
 
     public void setModifiedTime(Date modifiedTime) {
         this.modifiedTime = modifiedTime;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 }

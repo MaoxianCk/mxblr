@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/5/23 星期四 21:16:03                       */
+/* Created on:     2019/5/24 星期五 14:47:04                       */
 /*==============================================================*/
 
 
@@ -28,7 +28,6 @@ drop table if exists user_info;
 create table article
 (
    article_id           int(10) not null auto_increment,
-   article_content_id   int(10),
    title                varchar(50) not null,
    image_url            varchar(100) comment '页头大图的路径',
    summary              varchar(300) comment '文章简介',
@@ -64,6 +63,7 @@ create table article_comment
 create table article_content
 (
    article_content_id   int(10) not null auto_increment,
+   article_id           int(10),
    content              text not null,
    primary key (article_content_id)
 );
@@ -75,7 +75,7 @@ alter table article_content comment '文章的实体内容';
 /*==============================================================*/
 create table blog_option
 (
-   option_id            int(10) not null auto_increment,
+   option_id            int(10) not null,
    option_key           varchar(32) not null,
    option_val           varchar(32) not null,
    primary key (option_id)

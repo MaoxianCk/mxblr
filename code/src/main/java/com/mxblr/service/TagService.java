@@ -1,4 +1,4 @@
-package com.mxblr.service.impl;
+package com.mxblr.service;
 
 import com.mxblr.data.vo.TagVO;
 import com.mxblr.error.BusinessException;

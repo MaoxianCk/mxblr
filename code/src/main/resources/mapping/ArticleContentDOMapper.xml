@@ -3,6 +3,85 @@
 <mapper namespace="com.mxblr.dao.ArticleContentDOMapper">
   <resultMap id="BaseResultMap" type="com.mxblr.data.dataObject.ArticleContentDO">
     <id column="article_content_id" jdbcType="INTEGER" property="articleContentId" />
+    <result column="article_id" jdbcType="INTEGER" property="articleId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mxblr.data.dataObject.ArticleContentDO">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    article_content_id, article_id
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_content
+    where article_content_id = #{articleContentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article_content
+    where article_content_id = #{articleContentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mxblr.data.dataObject.ArticleContentDO">
+    insert into article_content (article_content_id, article_id, content
+      )
+    values (#{articleContentId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mxblr.data.dataObject.ArticleContentDO">
+    insert into article_content
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="articleContentId != null">
+        article_content_id,
+      </if>
+      <if test="articleId != null">
+        article_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="articleContentId != null">
+        #{articleContentId,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null">
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mxblr.data.dataObject.ArticleContentDO">
+    update article_content
+    <set>
+      <if test="articleId != null">
+        article_id = #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where article_content_id = #{articleContentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mxblr.data.dataObject.ArticleContentDO">
+    update article_content
+    set article_id = #{articleId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where article_content_id = #{articleContentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mxblr.data.dataObject.ArticleContentDO">
+    update article_content
+    set article_id = #{articleId,jdbcType=INTEGER}
+    where article_content_id = #{articleContentId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.mxblr.data.dataObject.ArticleContentDO">
+    <id column="article_content_id" jdbcType="INTEGER" property="articleContentId" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mxblr.data.dataObject.ArticleContentDO">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />

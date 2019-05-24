@@ -2,6 +2,11 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleContentDO;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+
+@Mapper
+@Component
 public interface ArticleContentDOMapper {
     int deleteByPrimaryKey(Integer articleContentId);
 
@@ -14,4 +19,6 @@ public interface ArticleContentDOMapper {
     int updateByPrimaryKeySelective(ArticleContentDO record);
 
     int updateByPrimaryKeyWithBLOBs(ArticleContentDO record);
+
+    int updateByPrimaryKey(ArticleContentDO record);
 }
