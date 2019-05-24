@@ -1,7 +1,5 @@
 package com.mxblr.data.vo;
 
-import com.mxblr.data.dataObject.ArticleContentDO;
-
 /**
  * @author Ck
  * #date 2019/05/24 14:40

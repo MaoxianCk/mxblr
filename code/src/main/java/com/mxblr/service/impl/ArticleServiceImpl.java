@@ -35,6 +35,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * @author Ck
+     * 根据标签（分类）获取文章列表
+     */
+    @Override
+    public List<ArticleInfoListVO> getArticleInfoListByTagId(Integer id) {
+        return articleDOMapper.selectArticleInfoByTagId(id);
+    }
+
+    /**
+     * @author Ck
      * 根据文章头的id号获取文章的所有信息（包含前后文章的id号）
      */
     @Override
@@ -42,10 +51,10 @@ public class ArticleServiceImpl implements ArticleService {
         ArticleVO articleVO;
         try {
             articleVO = articleDOMapper.selectArticleById(id);
-            if(articleVO == null){
+            if (articleVO == null) {
                 throw new BusinessException(EmBusinessErr.ARTICLE_NOT_EXISTS);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new BusinessException(EmBusinessErr.ARTICLE_NOT_EXISTS);
         }
         return articleVO;

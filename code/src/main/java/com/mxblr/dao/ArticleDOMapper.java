@@ -4,6 +4,8 @@ import com.mxblr.data.dataObject.ArticleDO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +32,6 @@ public interface ArticleDOMapper {
      */
     @Select("SELECT\n" +
             "	article_id,\n" +
-            "	article_content_id,\n" +
             "	title,\n" +
             "	image_url,\n" +
             "	summary,\n" +
@@ -41,7 +42,10 @@ public interface ArticleDOMapper {
             "	article,\n" +
             "	user_info\n" +
             "WHERE\n" +
-            "	article.user_id = user_info.user_id")
+            "	article.user_id = user_info.user_id\n" +
+            "AND article.status = 1\n" +
+            "ORDER BY\n" +
+            "	article.created_time")
     List<ArticleInfoListVO> selectArticleInfoListVO();
 
     /**
@@ -50,7 +54,6 @@ public interface ArticleDOMapper {
      */
     @Select("SELECT\n" +
             "	article.article_id,\n" +
-            "	article_content_id,\n" +
             "	title,\n" +
             "	image_url,\n" +
             "	summary,\n" +
@@ -64,7 +67,41 @@ public interface ArticleDOMapper {
             "	article_content\n" +
             "WHERE\n" +
             "	article.user_id = user_info.user_id\n" +
+            "AND article.status = 1\n" +
             "AND article.article_id = article_content.article_id\n" +
             "AND article.article_id = #{id}")
+    @Results({
+            @Result(property="articleInfo.articleId",column="article_id"),
+            @Result(property="articleInfo.title",column="title"),
+            @Result(property="articleInfo.imageUrl",column="image_url"),
+            @Result(property="articleInfo.summary",column="summary"),
+            @Result(property="articleInfo.name",column="NAME"),
+            @Result(property="articleInfo.createdTime",column="created_time"),
+            @Result(property="articleInfo.modifiedTime",column="modified_time"),
+            @Result(property="content",column="content")
+    })
     ArticleVO selectArticleById(Integer id);
+
+    /**
+     * @author Ck
+     * 根据标签（分类）查找所有文章头信息
+     */
+    @Select("SELECT\n" +
+            "	article_id,\n" +
+            "	title,\n" +
+            "	image_url,\n" +
+            "	summary,\n" +
+            "	NAME,\n" +
+            "	article.created_time,\n" +
+            "	article.modified_time\n" +
+            "FROM\n" +
+            "	article,\n" +
+            "	user_info\n" +
+            "WHERE\n" +
+            "	article.user_id = user_info.user_id\n" +
+            "AND article.status = 1\n" +
+            "AND tag_id = #{id}\n" +
+            "ORDER BY\n" +
+            "	article.created_time")
+    List<ArticleInfoListVO> selectArticleInfoByTagId(Integer id);
 }

@@ -10,8 +10,6 @@ import java.util.Date;
 public class ArticleInfoListVO {
     private Integer articleId;
 
-    private Integer articleContentId;
-
     private String title;
 
     private String imageUrl;
@@ -30,14 +28,6 @@ public class ArticleInfoListVO {
 
     public void setArticleId(Integer articleId) {
         this.articleId = articleId;
-    }
-
-    public Integer getArticleContentId() {
-        return articleContentId;
-    }
-
-    public void setArticleContentId(Integer articleContentId) {
-        this.articleContentId = articleContentId;
     }
 
     public String getTitle() {
