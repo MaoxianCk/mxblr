@@ -1,4 +1,4 @@
-package com.mxblr.controller;
+package com.mxblr.controller.user;
 
 import com.mxblr.data.vo.TagVO;
 import com.mxblr.response.CommonReturnType;

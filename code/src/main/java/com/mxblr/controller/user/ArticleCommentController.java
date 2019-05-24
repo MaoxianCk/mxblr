@@ -1,9 +1,10 @@
-package com.mxblr.controller;
+package com.mxblr.controller.user;
 
 import com.mxblr.data.vo.ArticleCommentViewVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.ArticleCommentService;
+import com.mxblr.utils.MyLog;
 import com.mxblr.validator.MyValidation;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class ArticleCommentController {
     @ResponseBody
     public CommonReturnType getArticleCommentByArticleId(Integer id) throws BusinessException {
         MyValidation.checkIntNull(id);
+        MyLog.info("Request : /user/article/getArticleCommentByArticleId\t[ id: " + id + " ]");
         List<ArticleCommentViewVO> list = articleCommentService.getCommentsByArticleId(id);
         return CommonReturnType.create(list);
     }

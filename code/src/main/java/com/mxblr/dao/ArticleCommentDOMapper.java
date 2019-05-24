@@ -2,6 +2,7 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleCommentDO;
 import com.mxblr.data.vo.ArticleCommentViewVO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -40,4 +41,11 @@ public interface ArticleCommentDOMapper {
             "	article_id = #{id}\n" +
             "AND STATUS = 1")
     List<ArticleCommentViewVO> selectByArticleId(Integer id);
+
+    @Delete("DELETE\n" +
+            "FROM\n" +
+            "	article_comment\n" +
+            "WHERE\n" +
+            "	article_id = #{articleId}")
+    void deleteByArticleId(Integer articleId);
 }

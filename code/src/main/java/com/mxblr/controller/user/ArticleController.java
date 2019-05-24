@@ -1,4 +1,4 @@
-package com.mxblr.controller;
+package com.mxblr.controller.user;
 
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;

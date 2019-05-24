@@ -1,8 +1,14 @@
 package com.mxblr.validator;
 
 import com.mxblr.error.BusinessException;
+import com.mxblr.error.CommonError;
 import com.mxblr.error.EmBusinessErr;
+import com.mxblr.utils.MyLog;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.validation.BindingResult;
+
+import java.util.Objects;
+
 /**
  * 校验函数
  */
@@ -40,6 +46,16 @@ public final class MyValidation {
             if (var == null) {
                 throw new BusinessException(EmBusinessErr.PARAMETER_INVALIDATION_ERROR);
             }
+        }
+    }
+
+    /**
+     * 用于获取BingdingResult校验结果
+     */
+    public static void validateObject(CommonError error, BindingResult result) throws BusinessException {
+        if (result.hasErrors()) {
+            MyLog.error(Objects.requireNonNull(result.getFieldError()).getDefaultMessage());
+            throw new BusinessException(error);
         }
     }
 }

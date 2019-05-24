@@ -1,4 +1,4 @@
-package com.mxblr.controller;
+package com.mxblr.controller.user;
 
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;

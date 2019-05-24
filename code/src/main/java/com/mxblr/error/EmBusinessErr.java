@@ -12,6 +12,9 @@ public enum EmBusinessErr implements CommonError {
 
     //文章相关错误
     ARTICLE_NOT_EXISTS(301,"文章不存在"),
+    ARTICLE_ADD_ERROR(302,"创建文章失败"),
+    ARTICLE_UPDATE_ERROR(303,"修改文章失败"),
+    ARTICLE_DELETE_ERROR(304,"删除文章失败"),
 	;
 
     private int errCode;
