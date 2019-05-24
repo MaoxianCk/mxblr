@@ -32,6 +32,7 @@ code/target/
 .pdb
 *.gz
 *.class
-*.class
-*.class
-*.class
+*.pdb
+*.log
+code/mvnw.cmd
+code/mvnw
