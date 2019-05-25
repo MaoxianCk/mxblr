@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/5/24 星期五 14:47:04                       */
+/* Created on:     2019/5/25 星期六 13:51:22                       */
 /*==============================================================*/
 
 
@@ -54,6 +54,8 @@ create table article_comment
    site                 varchar(100),
    content              text not null,
    status               tinyint(1) not null comment '0表示未批准，1表示已批准，2表示删除',
+   ip                   int(10),
+   created_time         datetime not null,
    primary key (comment_id)
 );
 

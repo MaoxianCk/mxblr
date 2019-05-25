@@ -141,5 +141,5 @@ public interface ArticleDOMapper {
             "SET STATUS = #{status}\n" +
             "WHERE\n" +
             "	article_id = #{articleId}")
-    void updateStatusByArticleId(Integer articleId,Byte status);
+    void updateStatusByArticleId(Integer articleId, Byte status);
 }

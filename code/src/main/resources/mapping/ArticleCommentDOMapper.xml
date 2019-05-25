@@ -8,12 +8,14 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="site" jdbcType="VARCHAR" property="site" />
     <result column="status" jdbcType="BIT" property="status" />
+    <result column="ip" jdbcType="INTEGER" property="ip" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.mxblr.data.dataObject.ArticleCommentDO">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
-    comment_id, article_id, name, email, site, status
+    comment_id, article_id, name, email, site, status, ip, created_time
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -32,11 +34,11 @@
   </delete>
   <insert id="insert" parameterType="com.mxblr.data.dataObject.ArticleCommentDO">
     insert into article_comment (comment_id, article_id, name, 
-      email, site, status, content
-      )
+      email, site, status, ip, 
+      created_time, content)
     values (#{commentId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{email,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{ip,jdbcType=INTEGER}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mxblr.data.dataObject.ArticleCommentDO">
     insert into article_comment
@@ -58,6 +60,12 @@
       </if>
       <if test="status != null">
         status,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="createdTime != null">
+        created_time,
       </if>
       <if test="content != null">
         content,
@@ -82,6 +90,12 @@
       <if test="status != null">
         #{status,jdbcType=BIT},
       </if>
+      <if test="ip != null">
+        #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -105,6 +119,12 @@
       <if test="status != null">
         status = #{status,jdbcType=BIT},
       </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -118,6 +138,8 @@
       email = #{email,jdbcType=VARCHAR},
       site = #{site,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
+      ip = #{ip,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
@@ -127,7 +149,9 @@
       name = #{name,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       site = #{site,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIT}
+      status = #{status,jdbcType=BIT},
+      ip = #{ip,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
     where comment_id = #{commentId,jdbcType=INTEGER}
   </update>
 </mapper>

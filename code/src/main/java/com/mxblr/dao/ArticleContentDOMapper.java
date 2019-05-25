@@ -27,7 +27,7 @@ public interface ArticleContentDOMapper {
     @Insert("INSERT INTO article_content (article_id, content)\n" +
             "VALUES\n" +
             "	(#{articleId}, #{content})")
-    void addArticleContent(Integer articleId,String content);
+    void addArticleContent(Integer articleId, String content);
 
     @Delete("DELETE\n" +
             "FROM\n" +

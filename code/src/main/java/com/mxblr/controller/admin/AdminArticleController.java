@@ -10,7 +10,6 @@ import com.mxblr.utils.Constants;
 import com.mxblr.utils.MyLog;
 import com.mxblr.utils.MySessionUtil;
 import com.mxblr.validator.MyValidation;
-import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

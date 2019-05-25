@@ -1,8 +1,12 @@
-package com.mxblr.data.dataObject;
+package com.mxblr.data.vo;
 
 import java.util.Date;
 
-public class ArticleCommentDO {
+/**
+ * @author Ck
+ * #date 2019/05/25 14:00
+ */
+public class ArticleCommentAdminVO {
     private Integer commentId;
 
     private Integer articleId;
@@ -20,6 +24,8 @@ public class ArticleCommentDO {
     private Date createdTime;
 
     private String content;
+
+    private String title;
 
     public Integer getCommentId() {
         return commentId;
@@ -42,7 +48,7 @@ public class ArticleCommentDO {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getEmail() {
@@ -50,7 +56,7 @@ public class ArticleCommentDO {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getSite() {
@@ -58,7 +64,7 @@ public class ArticleCommentDO {
     }
 
     public void setSite(String site) {
-        this.site = site == null ? null : site.trim();
+        this.site = site;
     }
 
     public Boolean getStatus() {
@@ -90,6 +96,14 @@ public class ArticleCommentDO {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

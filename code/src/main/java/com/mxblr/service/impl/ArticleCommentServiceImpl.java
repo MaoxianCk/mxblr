@@ -1,6 +1,7 @@
 package com.mxblr.service.impl;
 
 import com.mxblr.dao.ArticleCommentDOMapper;
+import com.mxblr.data.vo.ArticleCommentAdminVO;
 import com.mxblr.data.vo.ArticleCommentViewVO;
 import com.mxblr.service.ArticleCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import java.util.List;
  * #date 2019/05/24 21:16
  */
 @Service
-public class ArticleCommentServiceInpl implements ArticleCommentService {
+public class ArticleCommentServiceImpl implements ArticleCommentService {
     private final ArticleCommentDOMapper articleCommentDOMapper;
 
     @Autowired
-    public ArticleCommentServiceInpl(ArticleCommentDOMapper articleCommentDOMapper) {
+    public ArticleCommentServiceImpl(ArticleCommentDOMapper articleCommentDOMapper) {
         this.articleCommentDOMapper = articleCommentDOMapper;
     }
 
@@ -28,5 +29,14 @@ public class ArticleCommentServiceInpl implements ArticleCommentService {
     @Override
     public List<ArticleCommentViewVO> getCommentsByArticleId(Integer id) {
         return articleCommentDOMapper.selectByArticleId(id);
+    }
+
+    /**
+     * @author Ck
+     * 获取后台的评论列表
+     */
+    @Override
+    public List<ArticleCommentAdminVO> getCommentsWithArticle(){
+        return articleCommentDOMapper.selectWithArticle();
     }
 }

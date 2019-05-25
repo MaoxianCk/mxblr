@@ -1,5 +1,6 @@
 package com.mxblr.controller.user;
 
+import com.mxblr.data.vo.ArticleCommentAdminVO;
 import com.mxblr.data.vo.ArticleCommentViewVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
@@ -31,5 +32,14 @@ public class ArticleCommentController {
         List<ArticleCommentViewVO> list = articleCommentService.getCommentsByArticleId(id);
         return CommonReturnType.create(list);
     }
+
+    @GetMapping("getArticleCommentWithArticle")
+    @ResponseBody
+    public CommonReturnType getArticleCommentWithArticle(){
+        MyLog.info("Request : /user/article/getArticleCommentWithArticle");
+        List<ArticleCommentAdminVO> list = articleCommentService.getCommentsWithArticle();
+        return CommonReturnType.create(list);
+    }
+
 
 }
