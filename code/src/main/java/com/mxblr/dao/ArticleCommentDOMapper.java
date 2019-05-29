@@ -72,4 +72,6 @@ public interface ArticleCommentDOMapper {
             "WHERE\n" +
             "	article.article_id = article_comment.article_id")
     List<ArticleCommentAdminVO> selectWithArticle();
+
+
 }

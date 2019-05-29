@@ -53,10 +53,12 @@ public class AdminArticleController {
      */
     @DeleteMapping("deleteArticle")
     @ResponseBody
-    public CommonReturnType deleteArticle(Integer articleId) throws BusinessException {
+    public CommonReturnType deleteArticle(Integer articleId,HttpServletRequest httpServletRequest) throws BusinessException {
+        //只有编辑和超级管理员可以彻底删除文章
+        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest,Constants.SESSION_USER_ROLE);
+        MyValidation.checkPermission(userRole,Constants.USER_ROLE_SUPER_ADMIN,Constants.USER_ROLE_ADMIN);
         MyValidation.checkIntNull(articleId);
         MyLog.info("Request : /admin/article/deleteArticle\t[ id:" + articleId + " ]");
-        //TODO 只有编辑和超级管理员可以彻底删除文章
         articleService.deleteArticle(articleId);
         return CommonReturnType.create(null);
     }
@@ -67,8 +69,10 @@ public class AdminArticleController {
      */
     @PutMapping("modifyArticleStatus")
     @ResponseBody
-    public CommonReturnType modifyArticleStatus(Integer articleId, Byte status) throws BusinessException {
-        //TODO 只有编辑和超级管理员可以修改文章状态
+    public CommonReturnType modifyArticleStatus(Integer articleId, Byte status,HttpServletRequest httpServletRequest) throws BusinessException {
+        //只有编辑和超级管理员可以彻底删除文章
+        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest,Constants.SESSION_USER_ROLE);
+        MyValidation.checkPermission(userRole,Constants.USER_ROLE_SUPER_ADMIN,Constants.USER_ROLE_ADMIN);
         MyValidation.checkIntNull(articleId);
         checkStatus(status);
         MyLog.info("Request : /admin/article/modifyArticleStatus\t[ id:" + articleId + " status:+" + status + " ]");
@@ -87,6 +91,7 @@ public class AdminArticleController {
         Integer userId = (Integer) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ID);
         MyValidation.checkIntNull(addArticleVO.getArticleId());
         MyValidation.validateObject(EmBusinessErr.ARTICLE_UPDATE_ERROR, result);
+        //TODO 普通写手只能修改自己的文章
         MyLog.info("Request : /admin/article/modifyArticle");
         ArticleDO articleDO = articleService.getArticleById(addArticleVO.getArticleId());
         if (role == Constants.USER_ROLE_SUPER_ADMIN || role == Constants.USER_ROLE_ADMIN || articleDO.getUserId().equals(userId)) {

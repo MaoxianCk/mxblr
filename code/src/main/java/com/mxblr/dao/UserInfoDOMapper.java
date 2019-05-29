@@ -2,6 +2,7 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.UserInfoDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 @Mapper
@@ -18,4 +19,7 @@ public interface UserInfoDOMapper {
     int updateByPrimaryKeySelective(UserInfoDO record);
 
     int updateByPrimaryKey(UserInfoDO record);
+
+    @Select("select * from user_info where user_id = #{id}")
+    UserInfoDO selectByUserId(Integer id);
 }

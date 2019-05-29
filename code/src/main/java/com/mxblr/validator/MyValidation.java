@@ -58,4 +58,17 @@ public final class MyValidation {
             throw new BusinessException(error);
         }
     }
+
+    /**
+     * 判断第一个值是不是从第二个值开始的值之一
+     * 检验权限是否符合
+     */
+    public static void checkPermission(Byte value, byte... arr) throws BusinessException {
+        for (byte temp : arr) {
+            if (value == temp) {
+                return;
+            }
+        }
+        throw new BusinessException(EmBusinessErr.PERMISSION_DENIED);
+    }
 }

@@ -7,7 +7,7 @@ public class UserInfoDO {
 
     private Integer userId;
 
-    private Boolean role;
+    private Byte role;
 
     private String email;
 
@@ -37,11 +37,11 @@ public class UserInfoDO {
         this.userId = userId;
     }
 
-    public Boolean getRole() {
+    public Byte getRole() {
         return role;
     }
 
-    public void setRole(Boolean role) {
+    public void setRole(Byte role) {
         this.role = role;
     }
 

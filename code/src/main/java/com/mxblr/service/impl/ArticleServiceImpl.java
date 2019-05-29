@@ -11,10 +11,12 @@ import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.ArticleService;
 import com.mxblr.utils.MyLog;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -133,7 +135,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void modifyArticle(AddArticleVO addArticleVO) throws BusinessException {
         try {
-            //TODO 修改文章头和文章信息
+            //修改文件头
+            ArticleDO articleDO = new ArticleDO();
+            BeanUtils.copyProperties(articleDO,addArticleVO);
+            articleDO.setCreatedMonth(null);
+            articleDO.setCreatedTime(null);
+            articleDO.setModifiedTime(new Date(System.currentTimeMillis()));
+            articleDOMapper.updateByPrimaryKeySelective(articleDO);
+
+            //修改文本内容
+            articleContentDOMapper.updateByArticleId(addArticleVO.getArticleId(),addArticleVO.getContent());
         } catch (Exception e) {
             throw new BusinessException(EmBusinessErr.ARTICLE_UPDATE_ERROR);
         }

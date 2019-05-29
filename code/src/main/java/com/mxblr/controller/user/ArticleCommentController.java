@@ -24,6 +24,10 @@ public class ArticleCommentController {
         this.articleCommentService = articleCommentService;
     }
 
+    /**
+     * @author Ck
+     * 根据文章id获取评论列表
+     */
     @GetMapping("getArticleCommentByArticleId")
     @ResponseBody
     public CommonReturnType getArticleCommentByArticleId(Integer id) throws BusinessException {
@@ -33,6 +37,10 @@ public class ArticleCommentController {
         return CommonReturnType.create(list);
     }
 
+    /**
+     * @author Ck
+     * 获取评论列表带标题
+     */
     @GetMapping("getArticleCommentWithArticle")
     @ResponseBody
     public CommonReturnType getArticleCommentWithArticle(){
