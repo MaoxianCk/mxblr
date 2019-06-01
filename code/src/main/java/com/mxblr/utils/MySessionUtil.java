@@ -19,7 +19,7 @@ public final class MySessionUtil {
         HttpSession session = request.getSession();
         if (session.getAttribute(key) == null) {
             MyLog.error("session没有\"" + key + "\"属性");
-            throw new BusinessException(EmBusinessErr.PARAMETER_INVALIDATION_ERROR, "session没有\"" + key + "\"属性");
+            throw new BusinessException(EmBusinessErr.PARAMETER_INVALIDATION_ERROR, "登录状态错误");
         }
         return session.getAttribute(key);
     }
@@ -40,4 +40,17 @@ public final class MySessionUtil {
         session.removeAttribute(key);
     }
 
+    /**
+     * 检查是否管理员登录
+     * 判断方法：检查role属性
+     */
+    public static void checkSessionRole(HttpServletRequest request) throws BusinessException {
+        HttpSession session = request.getSession();
+        Byte role = (Byte)getAttribute(request,Constants.SESSION_USER_ROLE);
+        Integer id = (Integer)getAttribute(request,Constants.SESSION_USER_ID);
+        if(role!=Constants.USER_ROLE_SUPER_ADMIN && role!=Constants.USER_ROLE_ADMIN && role!=Constants.USER_ROLE_WRITER){
+            MyLog.error("角色权限异常 role : "+role);
+            throw new BusinessException(EmBusinessErr.PARAMETER_INVALIDATION_ERROR, "登录状态错误");
+        }
+    }
 }

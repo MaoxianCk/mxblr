@@ -46,105 +46,40 @@
 </template>
 
 <script>
-import bus from '../assets/js/bus.js';
+import bus from '../../assets/js/bus.js';
 export default {
   data () {
     return {
       collapse: false,
       items: [
         {
-          icon: 'el-icon-tzj-chart',
-          index: 'transactionrecordschool',
-          title: '财务管理'
+          icon: 'el-icon-mxblr-instrument',
+          index: 'instrument',
+          title: '仪表盘'
         },
         {
-          icon: 'el-icon-tzj-people',
-          index: '3',
-          title: '人员管理',
+          icon: 'el-icon-mxblr-article',
+          index: 'articleList',
+          title: '文章管理',
           subs: [
             {
-              icon: 'el-icon-tzj-people',
-              index: 'parent',
-              title: '学生管理'
+              index: 'articleList',
+              title: '文章列表',
             },
             {
-              index: 'class',
-              title: '班级管理'
+              // index: 'articleList',
+              title: '写文章',
             },
             {
-              index: 'teacher',
-              title: '教师管理'
+              // index: 'articleList',
+              title: '分类管理',
+            },
+            {
+              // index: 'articleList',
+              title: '评论管理',
             }
           ]
         },
-        {
-          icon: 'el-icon-tzj-date',
-          index: 'schedule',
-          title: '日程管理',
-          subs: [
-            {
-              icon: 'el-icon-tzj-date',
-              index: 'schedule',
-              title: '日程管理'
-            },
-            {
-              icon: 'el-icon-tzj-semester',
-              index: 'termRecord',
-              title: '学期管理'
-            },
-          ]
-        },
-        {
-          icon: 'el-icon-tzj-class',
-          index: 'course',
-          title: '课程管理',
-          subs: [
-            {
-              icon: 'el-icon-tzj-class',
-              index: 'course',
-              title: '课程管理'
-            }, {
-              icon: 'el-icon-tzj-active',
-              index: 'activity',
-              title: '活动管理'
-            },
-            {
-              icon: 'el-icon-tzj-project',
-              index: 'fixedCourse',
-              title: '固定项目管理'
-            }
-
-          ]
-        },
-        {
-          icon: 'el-icon-tzj-menu',
-          index: 'dish',
-          title: '菜谱管理',
-          subs: [{
-            index: 'dishes',
-            title: '菜谱管理'
-          }, {
-            index: 'voDishesDetial',
-            title: '菜品管理'
-          }]
-        },
-        {
-          icon: 'el-icon-tzj-proxy',
-          index: 'agent',
-          title: '机构管理',
-          subs: [{
-            index: 'BranchStructure',
-            title: '分支机构管理'
-          }, {
-            index: 'agents',
-            title: '代理机构管理'
-          }]
-        },
-        {
-          icon: 'el-icon-tzj-admin',
-          index: 'adminManage',
-          title: '管理员管理'
-        }
       ]
     }
   },

@@ -10,21 +10,25 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class MyIpUtil {
     public static Integer getIp(HttpServletRequest request) {
-        String ip = request.getHeader("X-Forwarded-For");
-        if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
-            //多次反向代理后会有多个ip值，第一个ip才是真实ip
-            int index = ip.indexOf(",");
-            if (index != -1) {
-                return ipToLong(ip.substring(0, index));
-            } else {
+        try {
+            String ip = request.getHeader("X-Forwarded-For");
+            if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+                //多次反向代理后会有多个ip值，第一个ip才是真实ip
+                int index = ip.indexOf(",");
+                if (index != -1) {
+                    return ipToLong(ip.substring(0, index));
+                } else {
+                    return ipToLong(ip);
+                }
+            }
+            ip = request.getHeader("X-Real-IP");
+            if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
                 return ipToLong(ip);
             }
+            return ipToLong(request.getRemoteAddr());
+        }catch (Exception e){
+            return 0;
         }
-        ip = request.getHeader("X-Real-IP");
-        if (StringUtils.isNotEmpty(ip) && !"unKnown".equalsIgnoreCase(ip)) {
-            return ipToLong(ip);
-        }
-        return ipToLong(request.getRemoteAddr());
     }
 
     public static Integer ipToLong(String strIp) {
@@ -41,7 +45,24 @@ public class MyIpUtil {
             ip[3] = Integer.parseInt(strIp.substring(position3 + 1));
             return (ip[0] << 24) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
         } catch (Exception e) {
-            return null;
+            return 0;
         }
+    }
+
+    public static String longToIp(long ip)
+    {
+        StringBuilder sb = new StringBuilder();
+        //直接右移24位
+        sb.append(ip >> 24);
+        sb.append(".");
+        //将高8位置0，然后右移16
+        sb.append((ip & 0x00FFFFFF) >> 16);
+        sb.append(".");
+        //将高16位置0，然后右移8位
+        sb.append((ip & 0x0000FFFF) >> 8);
+        sb.append(".");
+        //将高24位置0
+        sb.append((ip & 0x000000FF));
+        return sb.toString();
     }
 }

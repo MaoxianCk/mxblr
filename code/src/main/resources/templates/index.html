@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>毛线球上的喵星人</title>
+    <link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="headerPage"></div>
+<div id="articleInfos" class="container-fluid">
+    <template id="articleInfo1">
+        <div class="articleInfo">
+            <img id="articleImg" src="./img/uploads/1.jpg" alt="">
+            <a id="articleHref" class="articleTitle" href="#">
+                <span id="title">title</span>
+            </a>
+            <div class="articleDetail">
+                <span id="tag">tag</span>
+                <span id="createdTime">time</span>
+            </div>
+            <div class="articleSummary">
+                <span id="summary">summary</span>
+            </div>
+            <div class="spitLine"></div>
+        </div>
+    </template>
+</div>
+<div class="footerPage"></div>
+</body>
+</html>
+
+<script src="./js/jQuery.js"></script>
+<script src="./js/index.js"></script>
+<script>
+    $(function () {
+        $(".headerPage").load("header");
+        $(".footerPage").load("footer");
+    });
+</script>

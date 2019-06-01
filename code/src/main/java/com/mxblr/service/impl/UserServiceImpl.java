@@ -11,6 +11,9 @@ import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.UserService;
 import com.mxblr.utils.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,8 @@ public class UserServiceImpl implements UserService {
     private final UserDOMapper userDOMapper;
     private final UserInfoDOMapper userInfoDOMapper;
     private final LoginRecordDOMapper loginRecordDOMapper;
+    @Autowired
+    private JavaMailSender mailSender;
 
     public UserServiceImpl(UserDOMapper userDOMapper, UserInfoDOMapper userInfoDOMapper, LoginRecordDOMapper loginRecordDOMapper) {
         this.userDOMapper = userDOMapper;
@@ -40,7 +45,7 @@ public class UserServiceImpl implements UserService {
      * 用户登录
      */
     @Override
-    public void userLogin(String account, String password, HttpServletRequest request) throws BusinessException {
+    public UserInfoDO userLogin(String account, String password, HttpServletRequest request) throws BusinessException {
         UserDO userDO;
         List<UserDO> list = userDOMapper.selectByAccount(account);
         if (list.isEmpty()) {
@@ -77,6 +82,17 @@ public class UserServiceImpl implements UserService {
         MySessionUtil.setAttribute(request, Constants.SESSION_USER_ID, userDO.getUserId());
         MySessionUtil.setAttribute(request, Constants.SESSION_USER_ROLE, userInfoDO.getRole());
 
+        //如果是超级管理员登录则发送邮件通知
+        if (userInfoDO.getRole().equals(Constants.USER_ROLE_SUPER_ADMIN)) {
+            String content = "用户名:" + userDO.getAccount() + "\n登录IP:" + MyIpUtil.longToIp(ip) + "\n登录时间:" + new Date(System.currentTimeMillis()).toString();
+            if (userInfoDO.getEmail() != null) {
+                sendMail("登录提醒", content, userInfoDO.getEmail());
+                MyLog.info("邮件发送成功 : [用户名 : " + userDO.getAccount() + "\t登录IP:" + MyIpUtil.longToIp(ip) + "]");
+            }
+            sendMail("超级管理员登录", content, Constants.MAIL_AUTHOR);
+        }
+
+        return userInfoDO;
         //TODO cookie记住登录状态
     }
 
@@ -158,6 +174,19 @@ public class UserServiceImpl implements UserService {
             throw new BusinessException(EmBusinessErr.USER_LOGIN_FAILED);
         } else {
             MySessionUtil.setAttribute(request, Constants.SESSION_USER_LOGIN_CNT, cnt);
+        }
+    }
+
+    public void sendMail(String title, String content, String sendTo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("785315332@qq.com");
+        message.setTo(sendTo);
+        message.setSubject("From Mxblr : " + title);
+        message.setText(content);
+        try {
+            mailSender.send(message);
+        } catch (Exception e) {
+            return;
         }
     }
 }

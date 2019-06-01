@@ -5,12 +5,10 @@ import com.mxblr.data.vo.ArticleVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.ArticleService;
+import com.mxblr.utils.MyImageUtil;
 import com.mxblr.utils.MyLog;
 import com.mxblr.validator.MyValidation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +35,9 @@ public class ArticleController extends BaseController {
         MyLog.info("Request : /user/article/getArticleInfoList");
         List<ArticleInfoListVO> list;
         list = articleService.getArticleInfoList();
+        for (ArticleInfoListVO item : list) {
+            item.setImageUrl(MyImageUtil.getImageBase64(item.getImageUrl()));
+        }
         return CommonReturnType.create(list);
     }
 
@@ -60,10 +61,10 @@ public class ArticleController extends BaseController {
      */
     @GetMapping("getArticleById")
     @ResponseBody
-    public CommonReturnType getArticleById(Integer id) throws BusinessException {
-        MyValidation.checkIntNull(id);
-        MyLog.info("Request : /user/article/getArticleById\t[ id: " + id + " ]");
-        ArticleVO articleVO = articleService.getArticleByArticleId(id);
+    public CommonReturnType getArticleById(@RequestParam(name = "articleId") Integer articleId) throws BusinessException {
+        MyValidation.checkIntNull(articleId);
+        MyLog.info("Request : /user/article/getArticleById\t[ id: " + articleId + " ]");
+        ArticleVO articleVO = articleService.getArticleByArticleId(articleId);
         return CommonReturnType.create(articleVO);
     }
 }

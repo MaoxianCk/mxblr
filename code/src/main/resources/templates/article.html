@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>毛线球上的喵星人</title>
+    <link rel="stylesheet" type="text/css" href="./css/stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="./bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="headerPage"></div>
+<div class="container-fluid">
+    <div class="articleContent">
+        <img id="headerImg" src="" alt="">
+        <div>
+            <h1 id="title"></h1>
+        </div>
+        <div>
+            <span id="content"></span>
+        </div>
+    </div>
+</div>
+<div class="footerPage"></div>
+</body>
+</html>
+
+<script src="./js/jQuery.js"></script>
+<script src="./js/article.js"></script>
+<script>
+    $(function () {
+        $(".headerPage").load("header");
+        // $(".footerPage").load("footer");
+    });
+</script>

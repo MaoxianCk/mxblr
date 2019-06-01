@@ -1,7 +1,9 @@
 package com.mxblr.controller.admin;
 
+import com.mxblr.controller.user.BaseController;
 import com.mxblr.data.dataObject.ArticleDO;
 import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.response.CommonReturnType;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author Ck
@@ -23,7 +26,7 @@ import javax.validation.Valid;
  */
 @RequestMapping("/admin/article/")
 @RestController
-public class AdminArticleController {
+public class AdminArticleController extends BaseController {
     private final ArticleService articleService;
 
     @Autowired
@@ -33,13 +36,25 @@ public class AdminArticleController {
 
     /**
      * @author Ck
+     * 获取后台的文章列表
+     */
+    @GetMapping("getAdminArticleInfoList")
+    @ResponseBody
+    public CommonReturnType getAdminArticleInfoList(HttpServletRequest request) {
+        MyLog.info("Request : /admin/article/getAdminArticleInfoList");
+        List<AdminArticleInfoListVO> list = articleService.getAdminArticleInfoList();
+        return CommonReturnType.create(list);
+    }
+
+    /**
+     * @author Ck
      * 增加文章
      */
     @PostMapping("addArticle")
     @ResponseBody
     public CommonReturnType addArticle(@RequestBody @Valid AddArticleVO addArticleVO, BindingResult result, HttpServletRequest httpServletRequest) throws BusinessException {
-        MyLog.info("Request : /admin/article/addArticle");
         MyValidation.validateObject(EmBusinessErr.ARTICLE_ADD_ERROR, result);
+        MyLog.info("Request : /admin/article/addArticle");
         //获取用户id
         Integer userId = (Integer) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ID);
         MyValidation.checkIntNull(userId);
@@ -53,10 +68,10 @@ public class AdminArticleController {
      */
     @DeleteMapping("deleteArticle")
     @ResponseBody
-    public CommonReturnType deleteArticle(Integer articleId,HttpServletRequest httpServletRequest) throws BusinessException {
+    public CommonReturnType deleteArticle(Integer articleId, HttpServletRequest httpServletRequest) throws BusinessException {
         //只有编辑和超级管理员可以彻底删除文章
-        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest,Constants.SESSION_USER_ROLE);
-        MyValidation.checkPermission(userRole,Constants.USER_ROLE_SUPER_ADMIN,Constants.USER_ROLE_ADMIN);
+        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ROLE);
+        MyValidation.checkPermission(userRole, Constants.USER_ROLE_SUPER_ADMIN, Constants.USER_ROLE_ADMIN);
         MyValidation.checkIntNull(articleId);
         MyLog.info("Request : /admin/article/deleteArticle\t[ id:" + articleId + " ]");
         articleService.deleteArticle(articleId);
@@ -69,10 +84,10 @@ public class AdminArticleController {
      */
     @PutMapping("modifyArticleStatus")
     @ResponseBody
-    public CommonReturnType modifyArticleStatus(Integer articleId, Byte status,HttpServletRequest httpServletRequest) throws BusinessException {
-        //只有编辑和超级管理员可以彻底删除文章
-        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest,Constants.SESSION_USER_ROLE);
-        MyValidation.checkPermission(userRole,Constants.USER_ROLE_SUPER_ADMIN,Constants.USER_ROLE_ADMIN);
+    public CommonReturnType modifyArticleStatus(Integer articleId, Byte status, HttpServletRequest httpServletRequest) throws BusinessException {
+        //只有编辑和超级管理员可以彻底设置文章状态
+        Byte userRole = (Byte) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ROLE);
+        MyValidation.checkPermission(userRole, Constants.USER_ROLE_SUPER_ADMIN, Constants.USER_ROLE_ADMIN);
         MyValidation.checkIntNull(articleId);
         checkStatus(status);
         MyLog.info("Request : /admin/article/modifyArticleStatus\t[ id:" + articleId + " status:+" + status + " ]");

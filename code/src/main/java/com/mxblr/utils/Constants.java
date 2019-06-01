@@ -8,6 +8,8 @@ public final class Constants {
     public static final String SESSION_USER_ROLE = "userRole";
     public static final String SESSION_USER_LOGIN_CNT = "userLoginCnt";
 
+    public static final String MAIL_AUTHOR = "785315332@qq.com";
+
     //超级管理员
     public static final byte USER_ROLE_SUPER_ADMIN = 0;
     //编辑（除了不能修改设置）

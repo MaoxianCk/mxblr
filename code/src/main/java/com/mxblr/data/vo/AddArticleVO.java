@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class AddArticleVO {
     private Integer articleId;
+
     @NotNull(message = "标题不能为空")
     private String title;
 
@@ -17,6 +18,8 @@ public class AddArticleVO {
     private String summary;
 
     private Integer userId;
+
+
     @NotNull(message = "必须选择一个标签（分类）")
     private Integer tagId;
 

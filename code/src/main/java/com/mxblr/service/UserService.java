@@ -14,7 +14,7 @@ public interface UserService {
      * @author Ck
      * 用户登录
      */
-    void userLogin(String account, String password, HttpServletRequest request) throws BusinessException;
+    UserInfoDO userLogin(String account, String password, HttpServletRequest request) throws BusinessException;
 
     /**
      * @author Ck

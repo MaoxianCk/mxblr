@@ -1,6 +1,7 @@
 package com.mxblr.controller.login;
 
 import com.mxblr.controller.user.BaseController;
+import com.mxblr.data.dataObject.UserInfoDO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.UserService;
@@ -9,10 +10,7 @@ import com.mxblr.utils.MyLog;
 import com.mxblr.utils.MySessionUtil;
 import com.mxblr.validator.MyValidation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,10 +34,12 @@ public class LoginController extends BaseController {
      */
     @PostMapping("login")
     @ResponseBody
-    public CommonReturnType login(String account, String password, HttpServletRequest request) throws BusinessException {
+    public CommonReturnType login(@RequestParam(name = "account") String account,
+                                  @RequestParam(name = "password") String password, HttpServletRequest request) throws BusinessException {
         //TODO null valiad
-        userService.userLogin(account, password, request);
-        return CommonReturnType.create(null);
+        MyLog.info("Request : /maoxianUser/login");
+        UserInfoDO userInfo = userService.userLogin(account, password, request);
+        return CommonReturnType.create(userInfo);
     }
 
     /**
@@ -48,7 +48,8 @@ public class LoginController extends BaseController {
      */
     @PostMapping("addUser")
     @ResponseBody
-    public CommonReturnType addUser(String account, String password, HttpServletRequest httpServletRequest) throws BusinessException {
+    public CommonReturnType addUser(@RequestParam(name = "account") String account,
+                                    @RequestParam(name = "password") String password, HttpServletRequest httpServletRequest) throws BusinessException {
         if (Constants.TEST) {
             MySessionUtil.setAttribute(httpServletRequest, Constants.SESSION_USER_ROLE, Constants.USER_ROLE_SUPER_ADMIN);
         }

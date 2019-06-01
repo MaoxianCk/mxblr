@@ -2,6 +2,7 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleDO;
 import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
 import org.apache.ibatis.annotations.*;
@@ -45,6 +46,31 @@ public interface ArticleDOMapper {
             "ORDER BY\n" +
             "	article.created_time")
     List<ArticleInfoListVO> selectArticleInfoListVO();
+
+    /**
+     * @author Ck
+     * 查找所有文章列表，用于后台管理界面显示所有文章
+     */
+    @Select("SELECT\n" +
+            "	article.article_id,\n" +
+            "	title,\n" +
+            "	article.user_id,\n" +
+            "	user_info.`name` user_name,\n" +
+            "	article.tag_id,\n" +
+            "	tag.`name` tag_name,\n" +
+            "	article.created_time,\n" +
+            "	article.modified_time,\n" +
+            "	article.`status`\n" +
+            "FROM\n" +
+            "	article,\n" +
+            "	user_info,\n" +
+            "	tag\n" +
+            "WHERE\n" +
+            "	article.user_id = `user_info`.user_id\n" +
+            "AND article.tag_id = tag.tag_id\n" +
+            "ORDER BY\n" +
+            "	article.modified_time DESC")
+    List<AdminArticleInfoListVO> selectAdminArticleInfoList();
 
     /**
      * @author Ck
@@ -130,7 +156,7 @@ public interface ArticleDOMapper {
             "		#{modifiedTime},\n" +
             "		#{status}\n" +
             "	)")
-    @Options(useGeneratedKeys = true, keyProperty = "addArticleVO.articleId")
+    @Options(useGeneratedKeys = true, keyProperty = "articleId")
     void addArticle(AddArticleVO addArticleVO);
 
     /**

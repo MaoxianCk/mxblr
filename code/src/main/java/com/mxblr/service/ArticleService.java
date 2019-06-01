@@ -2,6 +2,7 @@ package com.mxblr.service;
 
 import com.mxblr.data.dataObject.ArticleDO;
 import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
 import com.mxblr.error.BusinessException;
@@ -26,6 +27,12 @@ public interface ArticleService {
      * 获取首页显示的文章列表
      */
     List<ArticleInfoListVO> getArticleInfoList();
+
+    /**
+     * @author Ck
+     * 获取后台显示的文章列表
+     */
+    List<AdminArticleInfoListVO> getAdminArticleInfoList();
 
     /**
      * @author Ck

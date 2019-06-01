@@ -5,17 +5,20 @@ import com.mxblr.dao.ArticleContentDOMapper;
 import com.mxblr.dao.ArticleDOMapper;
 import com.mxblr.data.dataObject.ArticleDO;
 import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.ArticleService;
+import com.mxblr.utils.MyExceptionUtil;
 import com.mxblr.utils.MyLog;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +51,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleInfoListVO> getArticleInfoList() {
         return articleDOMapper.selectArticleInfoListVO();
+    }
+
+    @Override
+    public List<AdminArticleInfoListVO> getAdminArticleInfoList() {
+        return articleDOMapper.selectAdminArticleInfoList();
     }
 
     /**
@@ -85,11 +93,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void addArticle(AddArticleVO addArticleVO, Integer userId) throws BusinessException {
         try {
+            addArticleVO.setUserId(userId);
+            Date now = new Date(System.currentTimeMillis());
+            addArticleVO.setCreatedTime(now);
+            Calendar cal=Calendar.getInstance();
+            cal.setTime(now);
+            addArticleVO.setCreatedMonth(((byte) (cal.get(Calendar.MONTH)+1)));
+            addArticleVO.setModifiedTime(now);
+            addArticleVO.setStatus(true);
             articleDOMapper.addArticle(addArticleVO);
             Integer articleId = addArticleVO.getArticleId();
             MyLog.debug("添加文章，文章信息头自增id为" + articleId);
             articleContentDOMapper.addArticleContent(articleId, addArticleVO.getContent());
         } catch (Exception e) {
+            e.getStackTrace();
             throw new BusinessException(EmBusinessErr.ARTICLE_ADD_ERROR);
         }
     }
