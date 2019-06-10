@@ -9,7 +9,7 @@
       <div class="articleInfo"
            v-for="(item,index) in articleInfo"
            :key="index">
-        <img :src="'data:image/jpeg;base64,'+item.imageUrl">
+        <img :src="item.image">
         <div class="articleTitle"
              @click="jumpTo(item.articleId)">{{item.title}}</div>
         <div class="articleDetail">{{item.createdTime}}</div>

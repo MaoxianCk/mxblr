@@ -63,10 +63,11 @@ export default {
       this.$axios.post(this.URL_DEFINE_ROOT + '/maoxianUser/login', params).then(function (res) {
         if (res.data.status == "success") {
           that.$message.success('登录成功');
+          sessionStorage.setItem("userInfoId", res.data.data.userInfoId);
           sessionStorage.setItem("userId", res.data.data.userId);
           sessionStorage.setItem("role", res.data.data.role);
           sessionStorage.setItem("name", res.data.data.name);
-          that.$router.push('/instrument');
+          that.$router.push('/admininstrument');
         } else {
           that.$message.error(res.data.data.errMsg);
         }

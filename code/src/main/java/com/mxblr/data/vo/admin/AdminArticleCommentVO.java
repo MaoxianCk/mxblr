@@ -1,8 +1,12 @@
-package com.mxblr.data.dataObject;
+package com.mxblr.data.vo.admin;
 
 import java.util.Date;
 
-public class ArticleCommentDO {
+/**
+ * @author Kny
+ * 2019/06/09
+ */
+public class AdminArticleCommentVO {
     private Integer commentId;
 
     private Integer articleId;
@@ -15,11 +19,25 @@ public class ArticleCommentDO {
 
     private Byte status;
 
-    private Integer ip;
+    private String ip;
 
     private Date createdTime;
 
     private String content;
+
+    private String title;
+
+    public AdminArticleCommentVO(Integer commentId, Integer articleId, String name, String email, String site, Byte status, Date createdTime, String content, String title) {
+        this.commentId = commentId;
+        this.articleId = articleId;
+        this.name = name;
+        this.email = email;
+        this.site = site;
+        this.status = status;
+        this.createdTime = createdTime;
+        this.content = content;
+        this.title = title;
+    }
 
     public Integer getCommentId() {
         return commentId;
@@ -42,7 +60,7 @@ public class ArticleCommentDO {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getEmail() {
@@ -50,7 +68,7 @@ public class ArticleCommentDO {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getSite() {
@@ -58,7 +76,7 @@ public class ArticleCommentDO {
     }
 
     public void setSite(String site) {
-        this.site = site == null ? null : site.trim();
+        this.site = site;
     }
 
     public Byte getStatus() {
@@ -69,11 +87,11 @@ public class ArticleCommentDO {
         this.status = status;
     }
 
-    public Integer getIp() {
+    public String getIp() {
         return ip;
     }
 
-    public void setIp(Integer ip) {
+    public void setIp(String ip) {
         this.ip = ip;
     }
 
@@ -90,6 +108,14 @@ public class ArticleCommentDO {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

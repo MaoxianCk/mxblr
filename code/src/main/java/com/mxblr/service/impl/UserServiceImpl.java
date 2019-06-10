@@ -7,10 +7,12 @@ import com.mxblr.data.dataObject.LoginRecordDO;
 import com.mxblr.data.dataObject.UserDO;
 import com.mxblr.data.dataObject.UserInfoDO;
 import com.mxblr.data.mo.UserMO;
+import com.mxblr.data.vo.UserInfoVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.UserService;
 import com.mxblr.utils.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -132,8 +134,16 @@ public class UserServiceImpl implements UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void modifyUserInfo(Integer userId, UserInfoDO userInfoDO) throws BusinessException {
-
+    public void modifyRole(Integer userId, byte role) throws BusinessException {
+        if (role == Constants.USER_ROLE_SUPER_ADMIN) {
+            throw new BusinessException(EmBusinessErr.PERMISSION_DENIED);
+        }
+        try {
+            userInfoDOMapper.updateRole(userId, role);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.USER_ROLE_MODIFY_ERROR);
+        }
     }
 
     /**
@@ -142,18 +152,32 @@ public class UserServiceImpl implements UserService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void modifyRole(Integer userId, byte role) throws BusinessException {
-
+    public void modifyPassword(Integer userId, String password) throws BusinessException {
+        //获取盐并加密
+        String salt = SaltUtil.getRandomSalt32();
+        password = MyPasswordUtil.getPassword(password, salt);
+        try {
+            userDOMapper.updatePasswordByUserId(userId, password, salt);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.USER_PASSWORD_MODIFY_ERROR);
+        }
     }
 
     /**
      * @author Ck
      * 用户修改信息
      */
-    @Transactional(rollbackFor = Exception.class)
     @Override
-    public void modifyPassword(Integer userId, String password) {
-
+    public void modifyUserInfo(UserInfoVO userInfoVO) throws BusinessException {
+        UserInfoDO userInfoDO = new UserInfoDO();
+        BeanUtils.copyProperties(userInfoVO, userInfoDO);
+        try {
+            userInfoDOMapper.updateUserInfo(userInfoDO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.USER_INFO_MODIFY_ERROR);
+        }
     }
 
     /**

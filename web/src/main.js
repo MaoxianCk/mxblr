@@ -18,15 +18,16 @@ Vue.prototype.$axios = axios
 router.beforeEach((to, from, next) => {
   const role = sessionStorage.getItem('role')
   const userId = sessionStorage.getItem('userId')
-  if (role != null && userId != null && to.path === '/login') {
-    next('/instrument')
+  
+  if (role != null && userId != null && to.path === '/adminlogin') {
+    next('/admininstrument')
   }
   if (to.path === '/' || to.path === '/article') {
     next()
     return
   }
-  if (role == null && to.path !== '/login') {
-    next('/login')
+  if (role == null && to.path !== '/adminlogin') {
+    next('/adminlogin')
   } else if (to.meta.permission) {
     // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
     role === '0' ? next() : next('/')

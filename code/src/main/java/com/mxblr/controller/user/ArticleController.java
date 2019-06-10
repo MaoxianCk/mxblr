@@ -5,7 +5,6 @@ import com.mxblr.data.vo.ArticleVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.ArticleService;
-import com.mxblr.utils.MyImageUtil;
 import com.mxblr.utils.MyLog;
 import com.mxblr.validator.MyValidation;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +30,10 @@ public class ArticleController extends BaseController {
      */
     @GetMapping("/getArticleInfoList")
     @ResponseBody
-    public CommonReturnType getArticleInfoList() {
+    public CommonReturnType getArticleInfoList() throws BusinessException {
         MyLog.info("Request : /user/article/getArticleInfoList");
         List<ArticleInfoListVO> list;
         list = articleService.getArticleInfoList();
-        for (ArticleInfoListVO item : list) {
-            item.setImageUrl(MyImageUtil.getImageBase64(item.getImageUrl()));
-        }
         return CommonReturnType.create(list);
     }
 

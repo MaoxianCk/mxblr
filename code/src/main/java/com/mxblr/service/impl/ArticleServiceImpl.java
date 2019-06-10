@@ -4,14 +4,13 @@ import com.mxblr.dao.ArticleCommentDOMapper;
 import com.mxblr.dao.ArticleContentDOMapper;
 import com.mxblr.dao.ArticleDOMapper;
 import com.mxblr.data.dataObject.ArticleDO;
-import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.ArticleAddVO;
 import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.ArticleService;
-import com.mxblr.utils.MyExceptionUtil;
 import com.mxblr.utils.MyLog;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +48,23 @@ public class ArticleServiceImpl implements ArticleService {
      * 获取首页显示的文章列表
      */
     @Override
-    public List<ArticleInfoListVO> getArticleInfoList() {
-        return articleDOMapper.selectArticleInfoListVO();
+    public List<ArticleInfoListVO> getArticleInfoList() throws BusinessException {
+        try {
+            return articleDOMapper.selectArticleInfoListVO();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.UNKNOWN_ERROR);
+        }
     }
 
     @Override
-    public List<AdminArticleInfoListVO> getAdminArticleInfoList() {
-        return articleDOMapper.selectAdminArticleInfoList();
+    public List<AdminArticleInfoListVO> getAdminArticleInfoList() throws BusinessException {
+        try {
+            return articleDOMapper.selectAdminArticleInfoList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.UNKNOWN_ERROR);
+        }
     }
 
     /**
@@ -63,8 +72,13 @@ public class ArticleServiceImpl implements ArticleService {
      * 根据标签（分类）获取文章列表
      */
     @Override
-    public List<ArticleInfoListVO> getArticleInfoListByTagId(Integer id) {
-        return articleDOMapper.selectArticleInfoByTagId(id);
+    public List<ArticleInfoListVO> getArticleInfoListByTagId(Integer id) throws BusinessException {
+        try {
+            return articleDOMapper.selectArticleInfoByTagId(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.UNKNOWN_ERROR);
+        }
     }
 
     /**
@@ -80,6 +94,7 @@ public class ArticleServiceImpl implements ArticleService {
                 throw new BusinessException(EmBusinessErr.ARTICLE_NOT_EXISTS);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BusinessException(EmBusinessErr.ARTICLE_NOT_EXISTS);
         }
         return articleVO;
@@ -91,22 +106,22 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void addArticle(AddArticleVO addArticleVO, Integer userId) throws BusinessException {
+    public void addArticle(ArticleAddVO articleAddVO, Integer userId) throws BusinessException {
         try {
-            addArticleVO.setUserId(userId);
+            articleAddVO.setUserId(userId);
             Date now = new Date(System.currentTimeMillis());
-            addArticleVO.setCreatedTime(now);
-            Calendar cal=Calendar.getInstance();
+            articleAddVO.setCreatedTime(now);
+            Calendar cal = Calendar.getInstance();
             cal.setTime(now);
-            addArticleVO.setCreatedMonth(((byte) (cal.get(Calendar.MONTH)+1)));
-            addArticleVO.setModifiedTime(now);
-            addArticleVO.setStatus(true);
-            articleDOMapper.addArticle(addArticleVO);
-            Integer articleId = addArticleVO.getArticleId();
+            articleAddVO.setCreatedMonth(((byte) (cal.get(Calendar.MONTH) + 1)));
+            articleAddVO.setModifiedTime(now);
+            articleAddVO.setStatus(true);
+            articleDOMapper.addArticle(articleAddVO);
+            Integer articleId = articleAddVO.getArticleId();
             MyLog.debug("添加文章，文章信息头自增id为" + articleId);
-            articleContentDOMapper.addArticleContent(articleId, addArticleVO.getContent());
+            articleContentDOMapper.addArticleContent(articleId, articleAddVO.getContent());
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
             throw new BusinessException(EmBusinessErr.ARTICLE_ADD_ERROR);
         }
     }
@@ -150,18 +165,18 @@ public class ArticleServiceImpl implements ArticleService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void modifyArticle(AddArticleVO addArticleVO) throws BusinessException {
+    public void modifyArticle(ArticleAddVO articleAddVO) throws BusinessException {
         try {
             //修改文件头
             ArticleDO articleDO = new ArticleDO();
-            BeanUtils.copyProperties(articleDO,addArticleVO);
+            BeanUtils.copyProperties(articleDO, articleAddVO);
             articleDO.setCreatedMonth(null);
             articleDO.setCreatedTime(null);
             articleDO.setModifiedTime(new Date(System.currentTimeMillis()));
             articleDOMapper.updateByPrimaryKeySelective(articleDO);
 
             //修改文本内容
-            articleContentDOMapper.updateByArticleId(addArticleVO.getArticleId(),addArticleVO.getContent());
+            articleContentDOMapper.updateByArticleId(articleAddVO.getArticleId(), articleAddVO.getContent());
         } catch (Exception e) {
             throw new BusinessException(EmBusinessErr.ARTICLE_UPDATE_ERROR);
         }

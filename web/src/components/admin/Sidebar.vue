@@ -54,32 +54,58 @@ export default {
       items: [
         {
           icon: 'el-icon-mxblr-instrument',
-          index: 'instrument',
+          index: 'admininstrument',
           title: '仪表盘'
         },
         {
           icon: 'el-icon-mxblr-article',
-          index: 'articleList',
+          index: '2',
           title: '文章管理',
           subs: [
             {
-              index: 'articleList',
+              index: 'adminarticleList',
               title: '文章列表',
             },
             {
-              // index: 'articleList',
+              index: 'adminarticleEdit',
               title: '写文章',
             },
             {
-              // index: 'articleList',
+              index: 'admintag',
               title: '分类管理',
             },
             {
-              // index: 'articleList',
+              index: 'CommentList',
               title: '评论管理',
             }
           ]
         },
+        {
+          icon: 'el-icon-mxblr-article',
+          index: '3',
+          title: '用户管理',
+          subs: [
+            {
+              index: 'adminuserList',
+              title: '用户列表',
+            }
+
+          ]
+
+        },
+        {
+          icon: 'el-icon-mxblr-article',
+          index: '4',
+          title: '图片管理',
+          subs: [
+            {
+              index: 'adminImageList',
+              title: '图片列表',
+            }
+
+          ]
+
+        }
       ]
     }
   },

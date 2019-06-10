@@ -1,18 +1,26 @@
-package com.mxblr.data.dataObject;
+package com.mxblr.data.vo;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-public class ArticleDO {
+/**
+ * @author Ck
+ * #date 2019/05/24 22:46
+ */
+public class ArticleAddVO {
     private Integer articleId;
 
+    @NotNull(message = "标题不能为空")
     private String title;
 
-    private Integer imageId;
+    private String imageId;
 
     private String summary;
 
     private Integer userId;
 
+
+    @NotNull(message = "必须选择一个标签（分类）")
     private Integer tagId;
 
     private Date createdTime;
@@ -21,7 +29,10 @@ public class ArticleDO {
 
     private Date modifiedTime;
 
-    private Byte status;
+    private Boolean status;
+
+    @NotNull(message = "文本不能为空")
+    private String content;
 
     public Integer getArticleId() {
         return articleId;
@@ -31,19 +42,20 @@ public class ArticleDO {
         this.articleId = articleId;
     }
 
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
-    public Integer getImageId() {
+    public String getImageId() {
         return imageId;
     }
 
-    public void setImageId(Integer imageId) {
+    public void setImageId(String imageId) {
         this.imageId = imageId;
     }
 
@@ -52,7 +64,7 @@ public class ArticleDO {
     }
 
     public void setSummary(String summary) {
-        this.summary = summary == null ? null : summary.trim();
+        this.summary = summary;
     }
 
     public Integer getUserId() {
@@ -95,11 +107,19 @@ public class ArticleDO {
         this.modifiedTime = modifiedTime;
     }
 
-    public Byte getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

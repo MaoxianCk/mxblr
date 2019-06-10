@@ -68,4 +68,12 @@
       view = #{view,jdbcType=BIT}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
+  <!--批量删除分类标签-->
+  <delete id="batchDeleteTag" parameterType="java.util.List">
+    delete from tag
+    where tag_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=",">
+      #{item,jdbcType=INTEGER}
+    </foreach>
+  </delete>
 </mapper>

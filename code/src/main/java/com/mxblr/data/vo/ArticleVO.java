@@ -69,4 +69,16 @@ public class ArticleVO {
     public void setNextArticleTitle(String nextArticleTitle) {
         this.nextArticleTitle = nextArticleTitle;
     }
+
+    @Override
+    public String toString() {
+        return "ArticleVO{" +
+                "articleInfo=" + articleInfo +
+                ", content='" + content + '\'' +
+                ", lastArticleId='" + lastArticleId + '\'' +
+                ", lastArticleTitle='" + lastArticleTitle + '\'' +
+                ", nextArticleId='" + nextArticleId + '\'' +
+                ", nextArticleTitle='" + nextArticleTitle + '\'' +
+                '}';
+    }
 }

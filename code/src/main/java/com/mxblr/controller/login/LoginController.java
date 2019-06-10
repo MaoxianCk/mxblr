@@ -2,6 +2,7 @@ package com.mxblr.controller.login;
 
 import com.mxblr.controller.user.BaseController;
 import com.mxblr.data.dataObject.UserInfoDO;
+import com.mxblr.data.vo.UserInfoVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.UserService;
@@ -35,7 +36,8 @@ public class LoginController extends BaseController {
     @PostMapping("login")
     @ResponseBody
     public CommonReturnType login(@RequestParam(name = "account") String account,
-                                  @RequestParam(name = "password") String password, HttpServletRequest request) throws BusinessException {
+                                  @RequestParam(name = "password") String password,
+                                  HttpServletRequest request) throws BusinessException {
         //TODO null valiad
         MyLog.info("Request : /maoxianUser/login");
         UserInfoDO userInfo = userService.userLogin(account, password, request);
@@ -69,8 +71,12 @@ public class LoginController extends BaseController {
      */
     @PostMapping("modifyRole")
     @ResponseBody
-    public CommonReturnType modifyRole(Integer userId, Byte role) throws BusinessException {
+    public CommonReturnType modifyRole(@RequestParam(name = "userId") Integer userId,
+                                       @RequestParam(name = "role") Byte role) throws BusinessException {
         //TODO
+        MyValidation.checkIntNull(userId);
+        MyLog.info("Request : /maoxianUser/modifyRole");
+        userService.modifyRole(userId, role);
         return CommonReturnType.create(null);
     }
 
@@ -80,8 +86,12 @@ public class LoginController extends BaseController {
      */
     @PostMapping("modifyPassword")
     @ResponseBody
-    public CommonReturnType modifyPassword(Integer userId, String password) throws BusinessException {
-        //TODO
+    public CommonReturnType modifyPassword(@RequestParam(name = "userId") Integer userId,
+                                           @RequestParam(name = "password") String password) throws BusinessException {
+        MyValidation.checkIntNull(userId);
+        MyValidation.checkStrNull(password);
+        MyLog.info("Request : /maoxianUser/modifyPassword");
+        userService.modifyPassword(userId, password);
         return CommonReturnType.create(null);
     }
 
@@ -91,8 +101,9 @@ public class LoginController extends BaseController {
      */
     @PostMapping("modifyUserInfo")
     @ResponseBody
-    public CommonReturnType modifyUserInfo() throws BusinessException {
-        //TODO
+    public CommonReturnType modifyUserInfo(@RequestBody UserInfoVO userInfoVO) throws BusinessException {
+        MyLog.info("Request : /maoxianUser/modifyUserInfo");
+        userService.modifyUserInfo(userInfoVO);
         return CommonReturnType.create(null);
     }
 }

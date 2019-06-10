@@ -1,6 +1,7 @@
 package com.mxblr.service;
 
 import com.mxblr.data.dataObject.UserInfoDO;
+import com.mxblr.data.vo.UserInfoVO;
 import com.mxblr.error.BusinessException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,5 +39,5 @@ public interface UserService {
      * @author Ck
      * 用户修改信息
      */
-    void modifyUserInfo(Integer userId, UserInfoDO userInfoDO) throws BusinessException;
+    void modifyUserInfo(UserInfoVO userInfoVO) throws BusinessException;
 }

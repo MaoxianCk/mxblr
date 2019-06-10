@@ -53,5 +53,5 @@ public interface ArticleContentDOMapper {
             "SET content = #{id}\n" +
             "WHERE\n" +
             "	article_id = #{content}")
-    void updateByArticleId(Integer id,String content);
+    void updateByArticleId(Integer id, String content);
 }

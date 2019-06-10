@@ -17,11 +17,17 @@ public final class Constants {
     //写手（只能写和改自己的文， 不能独立发布）
     public static final byte USER_ROLE_WRITER = 2;
 
-
     //文章状态为草稿
     public static final byte ARTICLE_STATUS_DRAFT = 0;
     //文章状态为已发表
     public static final byte ARTICLE_STATUS_PUBLISHED = 1;
     //文章状态为逻辑删除
     public static final byte ARTICLE_STATUS_DELETED = 2;
+
+    //评论状态为未批准
+    public static final byte COMMENT_STATUS_NOT_APPROVE = 0;
+    //评论状态为已批准
+    public static final byte COMMENT_STATUS_APPROVE = 1;
+    //评论状态为逻辑删除
+    public static final byte COMMENT_STATUS_DELETED = 2;
 }

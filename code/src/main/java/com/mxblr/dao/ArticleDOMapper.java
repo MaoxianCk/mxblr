@@ -1,7 +1,7 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleDO;
-import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.ArticleAddVO;
 import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
@@ -32,19 +32,21 @@ public interface ArticleDOMapper {
     @Select("SELECT\n" +
             "	article_id,\n" +
             "	title,\n" +
-            "	image_url,\n" +
             "	summary,\n" +
-            "	NAME,\n" +
+            "	user_info.NAME user_name,\n" +
             "	article.created_time,\n" +
-            "	article.modified_time\n" +
+            "	article.modified_time,\n" +
+            "	image\n" +
             "FROM\n" +
             "	article,\n" +
-            "	user_info\n" +
+            "	user_info,\n" +
+            "   image\n" +
             "WHERE\n" +
             "	article.user_id = user_info.user_id\n" +
+            "AND article.image_id = image.image_id\n" +
             "AND article.status = 1\n" +
             "ORDER BY\n" +
-            "	article.created_time")
+            "	article.created_time desc")
     List<ArticleInfoListVO> selectArticleInfoListVO();
 
     /**
@@ -78,28 +80,34 @@ public interface ArticleDOMapper {
      */
     @Select("SELECT\n" +
             "	article.article_id,\n" +
+            "	article.tag_id,\n" +
+            "	article.image_id,\n" +
             "	title,\n" +
-            "	image_url,\n" +
+            "	image,\n" +
             "	summary,\n" +
-            "	NAME,\n" +
+            "	user_info.NAME,\n" +
             "	article.created_time,\n" +
             "	article.modified_time,\n" +
             "	content\n" +
             "FROM\n" +
             "	article,\n" +
             "	user_info,\n" +
+            "   image,\n" +
             "	article_content\n" +
             "WHERE\n" +
             "	article.user_id = user_info.user_id\n" +
             "AND article.status = 1\n" +
+            "AND article.image_id = image.image_id\n" +
             "AND article.article_id = article_content.article_id\n" +
             "AND article.article_id = #{id}")
     @Results({
             @Result(property="articleInfo.articleId",column="article_id"),
+            @Result(property="articleInfo.tagId",column="tag_id"),
+            @Result(property="articleInfo.imageId",column="image_id"),
             @Result(property="articleInfo.title",column="title"),
-            @Result(property="articleInfo.imageUrl",column="image_url"),
+            @Result(property="articleInfo.image",column="image"),
             @Result(property="articleInfo.summary",column="summary"),
-            @Result(property="articleInfo.name",column="NAME"),
+            @Result(property="articleInfo.userName",column="NAME"),
             @Result(property="articleInfo.createdTime",column="created_time"),
             @Result(property="articleInfo.modifiedTime",column="modified_time"),
             @Result(property="content",column="content")
@@ -113,16 +121,18 @@ public interface ArticleDOMapper {
     @Select("SELECT\n" +
             "	article_id,\n" +
             "	title,\n" +
-            "	image_url,\n" +
+            "	image,\n" +
             "	summary,\n" +
-            "	NAME,\n" +
+            "	user_info.NAME,\n" +
             "	article.created_time,\n" +
             "	article.modified_time\n" +
             "FROM\n" +
             "	article,\n" +
+            "   image,\n" +
             "	user_info\n" +
             "WHERE\n" +
             "	article.user_id = user_info.user_id\n" +
+            "AND article.image_id = image.image_id\n" +
             "AND article.status = 1\n" +
             "AND tag_id = #{id}\n" +
             "ORDER BY\n" +
@@ -135,7 +145,7 @@ public interface ArticleDOMapper {
      */
     @Insert("INSERT INTO article (\n" +
             "	title,\n" +
-            "	image_url,\n" +
+            "	image_id,\n" +
             "	summary,\n" +
             "	user_id,\n" +
             "	tag_id,\n" +
@@ -147,7 +157,7 @@ public interface ArticleDOMapper {
             "VALUES\n" +
             "	(\n" +
             "		#{title},\n" +
-            "		#{imageUrl},\n" +
+            "		#{imageId},\n" +
             "		#{summary},\n" +
             "		#{userId},\n" +
             "		#{tagId},\n" +
@@ -157,7 +167,7 @@ public interface ArticleDOMapper {
             "		#{status}\n" +
             "	)")
     @Options(useGeneratedKeys = true, keyProperty = "articleId")
-    void addArticle(AddArticleVO addArticleVO);
+    void addArticle(ArticleAddVO articleAddVO);
 
     /**
      * @author Ck

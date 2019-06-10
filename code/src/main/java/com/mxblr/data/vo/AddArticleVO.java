@@ -13,7 +13,7 @@ public class AddArticleVO {
     @NotNull(message = "标题不能为空")
     private String title;
 
-    private String imageUrl;
+    private String imageId;
 
     private String summary;
 
@@ -51,12 +51,12 @@ public class AddArticleVO {
         this.title = title;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImageId() {
+        return imageId;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
     public String getSummary() {

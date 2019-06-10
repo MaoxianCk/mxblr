@@ -2,10 +2,7 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.UserDO;
 import com.mxblr.data.mo.UserMO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -41,4 +38,11 @@ public interface UserDOMapper {
             "	(#{account},#{password},#{salt})")
     @Options(useGeneratedKeys = true, keyProperty = "userId")
     void insertUser(UserMO userMO);
+
+    /**
+     * @author Kny
+     * 通过用户id修改密码
+     */
+    @Update("update user set password = #{password},salt = #{salt} where user_id = #{userId}")
+    void updatePasswordByUserId(Integer userId, String password, String salt);
 }

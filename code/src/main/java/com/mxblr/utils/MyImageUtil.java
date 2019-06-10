@@ -14,8 +14,8 @@ public final class MyImageUtil {
             data = new byte[inputStream.available()];
             inputStream.read(data);
             inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return "";
         }
         // 加密
         BASE64Encoder encoder = new BASE64Encoder();

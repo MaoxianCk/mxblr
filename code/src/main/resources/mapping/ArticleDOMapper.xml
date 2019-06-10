@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.mxblr.data.dataObject.ArticleDO">
     <id column="article_id" jdbcType="INTEGER" property="articleId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="image_id" jdbcType="INTEGER" property="imageId" />
     <result column="summary" jdbcType="VARCHAR" property="summary" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="tag_id" jdbcType="INTEGER" property="tagId" />
@@ -14,7 +14,7 @@
     <result column="status" jdbcType="BIT" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    article_id, title, image_url, summary, user_id, tag_id, created_time, created_month, 
+    article_id, title, image_id, summary, user_id, tag_id, created_time, created_month,
     modified_time, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -28,11 +28,11 @@
     where article_id = #{articleId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mxblr.data.dataObject.ArticleDO">
-    insert into article (article_id, title, image_url, 
+    insert into article (article_id, title, image_id,
       summary, user_id, tag_id, 
       created_time, created_month, modified_time, 
       status)
-    values (#{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+    values (#{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{imageId,jdbcType=INTEGER},
       #{summary,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{createdMonth,jdbcType=TINYINT}, #{modifiedTime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=BIT})
@@ -46,8 +46,8 @@
       <if test="title != null">
         title,
       </if>
-      <if test="imageUrl != null">
-        image_url,
+      <if test="imageId != null">
+        image_id,
       </if>
       <if test="summary != null">
         summary,
@@ -78,8 +78,8 @@
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="imageUrl != null">
-        #{imageUrl,jdbcType=VARCHAR},
+      <if test="imageId != null">
+        #{imageId,jdbcType=INTEGER},
       </if>
       <if test="summary != null">
         #{summary,jdbcType=VARCHAR},
@@ -110,8 +110,8 @@
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="imageUrl != null">
-        image_url = #{imageUrl,jdbcType=VARCHAR},
+      <if test="imageId != null">
+        image_id = #{imageId,jdbcType=INTEGER},
       </if>
       <if test="summary != null">
         summary = #{summary,jdbcType=VARCHAR},
@@ -140,7 +140,7 @@
   <update id="updateByPrimaryKey" parameterType="com.mxblr.data.dataObject.ArticleDO">
     update article
     set title = #{title,jdbcType=VARCHAR},
-      image_url = #{imageUrl,jdbcType=VARCHAR},
+      image_id = #{imageId,jdbcType=INTEGER},
       summary = #{summary,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER},
       tag_id = #{tagId,jdbcType=INTEGER},

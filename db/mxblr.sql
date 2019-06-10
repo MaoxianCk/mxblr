@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/5/25 星期六 13:51:22                       */
+/* Created on:     2019/6/7 2:00:17                             */
 /*==============================================================*/
 
 
@@ -11,6 +11,8 @@ drop table if exists article_comment;
 drop table if exists article_content;
 
 drop table if exists blog_option;
+
+drop table if exists image;
 
 drop table if exists login_record;
 
@@ -29,7 +31,7 @@ create table article
 (
    article_id           int(10) not null auto_increment,
    title                varchar(50) not null,
-   image_url            varchar(100) comment '页头大图的路径',
+   image_id             int comment '页头大图的路径',
    summary              varchar(300) comment '文章简介',
    user_id              int(10) not null,
    tag_id               int(10),
@@ -84,6 +86,17 @@ create table blog_option
 );
 
 alter table blog_option comment '只存放设置项，数据存好后不应进行增删';
+
+/*==============================================================*/
+/* Table: image                                                 */
+/*==============================================================*/
+create table image
+(
+   image_id             int not null auto_increment,
+   image                text not null,
+   name                 varchar(50),
+   primary key (image_id)
+);
 
 /*==============================================================*/
 /* Table: login_record                                          */

@@ -10,17 +10,37 @@ import java.util.Date;
 public class ArticleInfoListVO {
     private Integer articleId;
 
+    private Integer tagId;
+
+    private Integer imageId;
+
     private String title;
 
-    private String imageUrl;
+    private String image;
 
     private String summary;
 
-    private Integer userName;
+    private String userName;
 
     private Date createdTime;
 
     private Date modifiedTime;
+
+    public Integer getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Integer tagId) {
+        this.tagId = tagId;
+    }
+
+    public Integer getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
+    }
 
     public Integer getArticleId() {
         return articleId;
@@ -38,12 +58,12 @@ public class ArticleInfoListVO {
         this.title = title;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getSummary() {
@@ -54,11 +74,11 @@ public class ArticleInfoListVO {
         this.summary = summary;
     }
 
-    public Integer getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(Integer userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -76,5 +96,18 @@ public class ArticleInfoListVO {
 
     public void setModifiedTime(Date modifiedTime) {
         this.modifiedTime = modifiedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleInfoListVO{" +
+                "articleId=" + articleId +
+                ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
+                ", summary='" + summary + '\'' +
+                ", userName=" + userName +
+                ", createdTime=" + createdTime +
+                ", modifiedTime=" + modifiedTime +
+                '}';
     }
 }

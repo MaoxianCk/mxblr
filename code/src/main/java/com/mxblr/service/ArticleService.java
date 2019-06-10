@@ -1,7 +1,7 @@
 package com.mxblr.service;
 
 import com.mxblr.data.dataObject.ArticleDO;
-import com.mxblr.data.vo.AddArticleVO;
+import com.mxblr.data.vo.ArticleAddVO;
 import com.mxblr.data.vo.AdminArticleInfoListVO;
 import com.mxblr.data.vo.ArticleInfoListVO;
 import com.mxblr.data.vo.ArticleVO;
@@ -26,19 +26,19 @@ public interface ArticleService {
      * @author Ck
      * 获取首页显示的文章列表
      */
-    List<ArticleInfoListVO> getArticleInfoList();
+    List<ArticleInfoListVO> getArticleInfoList() throws BusinessException;
 
     /**
      * @author Ck
      * 获取后台显示的文章列表
      */
-    List<AdminArticleInfoListVO> getAdminArticleInfoList();
+    List<AdminArticleInfoListVO> getAdminArticleInfoList() throws BusinessException;
 
     /**
      * @author Ck
      * 根据标签（分类）获取文章列表
      */
-    List<ArticleInfoListVO> getArticleInfoListByTagId(Integer id);
+    List<ArticleInfoListVO> getArticleInfoListByTagId(Integer id) throws BusinessException;
 
     /**
      * @author Ck
@@ -50,7 +50,7 @@ public interface ArticleService {
      * @author Ck
      * 增加文章
      */
-    void addArticle(AddArticleVO addArticleVO, Integer userId) throws BusinessException;
+    void addArticle(ArticleAddVO articleAddVO, Integer userId) throws BusinessException;
 
     /**
      * @author Ck
@@ -68,5 +68,5 @@ public interface ArticleService {
      * @author Ck
      * 修改文章
      */
-    void modifyArticle(AddArticleVO addArticleVO) throws BusinessException;
+    void modifyArticle(ArticleAddVO articleAddVO) throws BusinessException;
 }

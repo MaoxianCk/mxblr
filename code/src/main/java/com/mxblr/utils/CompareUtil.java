@@ -48,7 +48,7 @@ public final class CompareUtil {
                 }
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
         //如果DO被标记不需要修改isChange==false，那么将DO设为null对象 表示不需要更新
         //System.out.println("end "+isChange);
