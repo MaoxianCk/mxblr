@@ -1,7 +1,7 @@
 package com.mxblr.controller.admin;
 
-import com.mxblr.controller.user.BaseController;
-import com.mxblr.data.vo.ImageVO;
+import com.mxblr.controller.BaseController;
+import com.mxblr.data.vo.admin.AdminImageVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.response.CommonReturnType;
@@ -16,7 +16,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author Kny
  * 2019/06/07
  */
 @RequestMapping("/admin/image/")
@@ -30,33 +29,30 @@ public class AdminImageController extends BaseController {
     }
 
     /**
-     * @author Kny
      * 获取图片列表
      */
     @GetMapping("getImageList")
     @ResponseBody
     public CommonReturnType getImageList() {
         MyLog.info("Request : /admin/image/getImageList");
-        List<ImageVO> list = imageService.getImageList();
+        List<AdminImageVO> list = imageService.getImageList();
         return CommonReturnType.create(list);
     }
 
     /**
-     * @author Kny
      * 图片上传
      */
     @PostMapping("addImage")
     @ResponseBody
-    public CommonReturnType addImage(@RequestBody @Valid ImageVO imageVO,
+    public CommonReturnType addImage(@RequestBody @Valid AdminImageVO adminImageVO,
                                      BindingResult result) throws BusinessException {
         MyValidation.validateObject(EmBusinessErr.IMAGE_ADD_ERROR, result);
-        MyLog.info("Request : /admin/image/addImage\t[ ImageVO: " + imageVO + " ]");
-        imageService.addImage(imageVO);
+        MyLog.info("Request : /admin/image/addImage");
+        imageService.addImage(adminImageVO);
         return CommonReturnType.create(null);
     }
 
     /**
-     * @author Kny
      * 删除图片
      */
     @PostMapping("deleteImage")

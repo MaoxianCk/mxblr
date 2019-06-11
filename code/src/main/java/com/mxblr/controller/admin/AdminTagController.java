@@ -1,21 +1,17 @@
 package com.mxblr.controller.admin;
 
-import com.mxblr.controller.user.BaseController;
-import com.mxblr.data.vo.TagVO;
+import com.mxblr.controller.BaseController;
+import com.mxblr.data.vo.admin.AdminTagVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
 import com.mxblr.service.TagService;
-import com.mxblr.utils.Constants;
 import com.mxblr.utils.MyLog;
-import com.mxblr.utils.MySessionUtil;
 import com.mxblr.validator.MyValidation;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @author Ck
  * #date 2019/06/04 15:47
  */
 @RequestMapping("/admin/tag/")
@@ -28,20 +24,18 @@ public class AdminTagController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 获取分类列表
      */
     @GetMapping("getTagList")
     @ResponseBody
     public CommonReturnType getTagList() {
         MyLog.info("Request : /admin/tag/getTagList");
-        List<TagVO> list;
+        List<AdminTagVO> list;
         list = tagService.getTagList();
         return CommonReturnType.create(list);
     }
 
     /**
-     * @author Kny
      * 添加分类标签
      */
     @PostMapping("addTag")
@@ -54,7 +48,6 @@ public class AdminTagController extends BaseController {
     }
 
     /**
-     * @author Kny
      * 删除分类标签
      */
     @PostMapping("deleteTag")
@@ -67,7 +60,6 @@ public class AdminTagController extends BaseController {
     }
 
     /**
-     * @author Kny
      * 修改分类标签
      */
     @PostMapping("modifyTag")

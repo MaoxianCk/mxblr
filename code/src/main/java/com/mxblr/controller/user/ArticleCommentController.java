@@ -1,7 +1,8 @@
 package com.mxblr.controller.user;
 
-import com.mxblr.data.vo.ArticleCommentAddVO;
-import com.mxblr.data.vo.ArticleCommentViewVO;
+import com.mxblr.controller.BaseController;
+import com.mxblr.data.vo.user.ArticleCommentAddVO;
+import com.mxblr.data.vo.user.ArticleCommentVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.response.CommonReturnType;
@@ -16,10 +17,9 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author Ck
  * #date 2019/05/24 21:13
  */
-@RequestMapping("/user/articleComment")
+@RequestMapping("/user/articleComment/")
 @RestController
 public class ArticleCommentController extends BaseController {
     private final ArticleCommentService articleCommentService;
@@ -29,7 +29,6 @@ public class ArticleCommentController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 根据文章id获取评论列表
      */
     @GetMapping("getArticleCommentByArticleId")
@@ -37,19 +36,18 @@ public class ArticleCommentController extends BaseController {
     public CommonReturnType getArticleCommentByArticleId(Integer articleId) throws BusinessException {
         MyValidation.checkIntNull(articleId);
         MyLog.info("Request : /user/articleComment/getArticleCommentByArticleId\t[ ArticleId: " + articleId + " ]");
-        List<ArticleCommentViewVO> list = articleCommentService.getCommentsByArticleId(articleId);
+        List<ArticleCommentVO> list = articleCommentService.getCommentsByArticleId(articleId);
         return CommonReturnType.create(list);
     }
 
     /**
-     * @author Lrh
      * 增加评论
      */
     @PostMapping("addArticleComment")
     @ResponseBody
     public CommonReturnType addArticleComment(@RequestBody @Valid ArticleCommentAddVO articleCommentAddVO,
-                                                 BindingResult result,
-                                                 HttpServletRequest request) throws BusinessException {
+                                              BindingResult result,
+                                              HttpServletRequest request) throws BusinessException {
         MyValidation.validateObject(EmBusinessErr.COMMENT_ADD_ERROR, result);
         MyLog.info("Request : /user/articleComment/addArticleComment\t[ ArticleCommentAddVO: " + articleCommentAddVO + " ]");
         articleCommentService.addComment(articleCommentAddVO, request);

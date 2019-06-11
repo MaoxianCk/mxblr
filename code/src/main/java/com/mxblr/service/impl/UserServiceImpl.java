@@ -6,8 +6,9 @@ import com.mxblr.dao.UserInfoDOMapper;
 import com.mxblr.data.dataObject.LoginRecordDO;
 import com.mxblr.data.dataObject.UserDO;
 import com.mxblr.data.dataObject.UserInfoDO;
-import com.mxblr.data.mo.UserMO;
-import com.mxblr.data.vo.UserInfoVO;
+import com.mxblr.data.mo.user.UserMO;
+import com.mxblr.data.vo.admin.AdminUserInfoModifyVO;
+import com.mxblr.data.vo.admin.AdminUserInfoVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.UserService;
@@ -24,7 +25,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Ck
  * #date 2019/05/28 20:35
  */
 @Service
@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
 
 
     /**
-     * @author Ck
      * 用户登录
      */
     @Override
@@ -83,6 +82,8 @@ public class UserServiceImpl implements UserService {
         UserInfoDO userInfoDO = userInfoDOMapper.selectByUserId(userDO.getUserId());
         MySessionUtil.setAttribute(request, Constants.SESSION_USER_ID, userDO.getUserId());
         MySessionUtil.setAttribute(request, Constants.SESSION_USER_ROLE, userInfoDO.getRole());
+        //添加登录成功标志
+        MySessionUtil.setAttribute(request, Constants.SESSION_USER_LOGIN, true);
 
         //如果是超级管理员登录则发送邮件通知
         if (userInfoDO.getRole().equals(Constants.USER_ROLE_SUPER_ADMIN)) {
@@ -99,7 +100,6 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @author Ck
      * 管理员增加用户, 新加的用户只能是写手, 编辑只能由超管手动修改, 超管只能手动修改数据库得到
      */
     @Transactional(rollbackFor = Exception.class)
@@ -129,7 +129,6 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @author Ck
      * 管理员修改用户角色, 超管只能修改用户为编辑或者写手, 并且不能修改超管
      */
     @Transactional(rollbackFor = Exception.class)
@@ -140,14 +139,13 @@ public class UserServiceImpl implements UserService {
         }
         try {
             userInfoDOMapper.updateRole(userId, role);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new BusinessException(EmBusinessErr.USER_ROLE_MODIFY_ERROR);
         }
     }
 
     /**
-     * @author Ck
      * 用户修改密码
      */
     @Transactional(rollbackFor = Exception.class)
@@ -165,15 +163,14 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @author Ck
      * 用户修改信息
      */
     @Override
-    public void modifyUserInfo(UserInfoVO userInfoVO) throws BusinessException {
+    public void modifyUserInfo(AdminUserInfoModifyVO adminUserInfoModifyVO) throws BusinessException {
         UserInfoDO userInfoDO = new UserInfoDO();
-        BeanUtils.copyProperties(userInfoVO, userInfoDO);
+        BeanUtils.copyProperties(adminUserInfoModifyVO, userInfoDO);
         try {
-            userInfoDOMapper.updateUserInfo(userInfoDO);
+            userInfoDOMapper.updateByPrimaryKeySelective(userInfoDO);
         } catch (Exception e) {
             e.printStackTrace();
             throw new BusinessException(EmBusinessErr.USER_INFO_MODIFY_ERROR);
@@ -181,7 +178,6 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @author Ck
      * 用户登录次数控制，目前使用session记录，连续登录3次后禁止并发送邮件通知超级管理员
      * TODO 使用持久化cnt
      */
@@ -201,6 +197,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 发邮件
+     */
     public void sendMail(String title, String content, String sendTo) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("785315332@qq.com");
@@ -211,6 +210,32 @@ public class UserServiceImpl implements UserService {
             mailSender.send(message);
         } catch (Exception e) {
             return;
+        }
+    }
+
+    /**
+     * 获取用户列表
+     */
+    @Override
+    public List<AdminUserInfoVO> getUserList() throws BusinessException {
+        return userInfoDOMapper.selectUserInfoAndUser();
+    }
+
+    /**
+     * 管理员删除用户
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteUser(Integer userId, byte role) throws BusinessException {
+        if (role == Constants.USER_ROLE_SUPER_ADMIN) {
+            throw new BusinessException(EmBusinessErr.PERMISSION_DENIED);
+        }
+        try {
+            userDOMapper.deleteUser(userId);
+            userInfoDOMapper.deleteUserInfo(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new BusinessException(EmBusinessErr.USER_DELETE_ERROR);
         }
     }
 }

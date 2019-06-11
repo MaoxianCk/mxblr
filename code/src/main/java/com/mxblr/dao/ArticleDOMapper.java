@@ -1,10 +1,10 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleDO;
-import com.mxblr.data.vo.ArticleAddVO;
-import com.mxblr.data.vo.AdminArticleInfoListVO;
-import com.mxblr.data.vo.ArticleInfoListVO;
-import com.mxblr.data.vo.ArticleVO;
+import com.mxblr.data.vo.user.ArticleInfoVO;
+import com.mxblr.data.vo.admin.AdminArticleAddVO;
+import com.mxblr.data.vo.admin.AdminArticleInfoVO;
+import com.mxblr.data.vo.user.ArticleVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,6 @@ public interface ArticleDOMapper {
     int updateByPrimaryKey(ArticleDO record);
 
     /**
-     * @author Ck
      * 查找所有文章头信息，用于首页信息的显示
      */
     @Select("SELECT\n" +
@@ -47,10 +46,9 @@ public interface ArticleDOMapper {
             "AND article.status = 1\n" +
             "ORDER BY\n" +
             "	article.created_time desc")
-    List<ArticleInfoListVO> selectArticleInfoListVO();
+    List<ArticleInfoVO> selectArticleInfoListVO();
 
     /**
-     * @author Ck
      * 查找所有文章列表，用于后台管理界面显示所有文章
      */
     @Select("SELECT\n" +
@@ -72,10 +70,9 @@ public interface ArticleDOMapper {
             "AND article.tag_id = tag.tag_id\n" +
             "ORDER BY\n" +
             "	article.modified_time DESC")
-    List<AdminArticleInfoListVO> selectAdminArticleInfoList();
+    List<AdminArticleInfoVO> selectAdminArticleInfoList();
 
     /**
-     * @author Ck
      * 根据文章头id号查找文章的具体信息
      */
     @Select("SELECT\n" +
@@ -101,21 +98,20 @@ public interface ArticleDOMapper {
             "AND article.article_id = article_content.article_id\n" +
             "AND article.article_id = #{id}")
     @Results({
-            @Result(property="articleInfo.articleId",column="article_id"),
-            @Result(property="articleInfo.tagId",column="tag_id"),
-            @Result(property="articleInfo.imageId",column="image_id"),
-            @Result(property="articleInfo.title",column="title"),
-            @Result(property="articleInfo.image",column="image"),
-            @Result(property="articleInfo.summary",column="summary"),
-            @Result(property="articleInfo.userName",column="NAME"),
-            @Result(property="articleInfo.createdTime",column="created_time"),
-            @Result(property="articleInfo.modifiedTime",column="modified_time"),
-            @Result(property="content",column="content")
+            @Result(property = "articleInfo.articleId", column = "article_id"),
+            @Result(property = "articleInfo.tagId", column = "tag_id"),
+            @Result(property = "articleInfo.imageId", column = "image_id"),
+            @Result(property = "articleInfo.title", column = "title"),
+            @Result(property = "articleInfo.image", column = "image"),
+            @Result(property = "articleInfo.summary", column = "summary"),
+            @Result(property = "articleInfo.userName", column = "NAME"),
+            @Result(property = "articleInfo.createdTime", column = "created_time"),
+            @Result(property = "articleInfo.modifiedTime", column = "modified_time"),
+            @Result(property = "content", column = "content")
     })
     ArticleVO selectArticleById(Integer id);
 
     /**
-     * @author Ck
      * 根据标签（分类）查找所有文章头信息
      */
     @Select("SELECT\n" +
@@ -137,10 +133,9 @@ public interface ArticleDOMapper {
             "AND tag_id = #{id}\n" +
             "ORDER BY\n" +
             "	article.created_time")
-    List<ArticleInfoListVO> selectArticleInfoByTagId(Integer id);
+    List<ArticleInfoVO> selectArticleInfoByTagId(Integer id);
 
     /**
-     * @author Ck
      * 添加一条文章信息并获取id
      */
     @Insert("INSERT INTO article (\n" +
@@ -167,10 +162,9 @@ public interface ArticleDOMapper {
             "		#{status}\n" +
             "	)")
     @Options(useGeneratedKeys = true, keyProperty = "articleId")
-    void addArticle(ArticleAddVO articleAddVO);
+    void addArticle(AdminArticleAddVO adminArticleAddVO);
 
     /**
-     * @author Ck
      * 根据id修改文章状态
      */
     @Update("UPDATE article\n" +

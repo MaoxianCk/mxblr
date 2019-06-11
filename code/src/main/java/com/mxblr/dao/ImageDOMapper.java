@@ -1,7 +1,7 @@
 package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ImageDO;
-import com.mxblr.data.vo.ImageVO;
+import com.mxblr.data.vo.admin.AdminImageVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -26,14 +26,12 @@ public interface ImageDOMapper {
     int updateByPrimaryKey(ImageDO record);
 
     /**
-     * @author Kny
      * 查询图片列表
      */
     @Select("select * from image")
-    List<ImageVO> getImageList();
+    List<AdminImageVO> getImageList();
 
     /**
-     * @author Kny
      * 批量删除图片
      */
     void batchDeleteImage(List<Integer> id);

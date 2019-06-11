@@ -67,7 +67,7 @@ export default {
           sessionStorage.setItem("userId", res.data.data.userId);
           sessionStorage.setItem("role", res.data.data.role);
           sessionStorage.setItem("name", res.data.data.name);
-          that.$router.push('/admininstrument');
+          that.$router.push('/adminarticleList');
         } else {
           that.$message.error(res.data.data.errMsg);
         }

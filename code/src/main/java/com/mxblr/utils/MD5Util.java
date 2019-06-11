@@ -31,9 +31,9 @@ public final class MD5Util {
         return md5.length() == 32 ? md5 : fillMD5("0" + md5);
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         String str = "456as4fsda869-*23/4+23q-*4/asgdfg-*435";// b5c465303ac45860973eee102905999c
-        System.out.println("md5:"+getMD5(str));
-        System.out.println("length:"+getMD5(str).length());
+        System.out.println("md5:" + getMD5(str));
+        System.out.println("length:" + getMD5(str).length());
     }
 }

@@ -4,6 +4,9 @@ public final class Constants {
     //是否测试，是则自动填充session的必要信息,仅开发中测试
     public static final boolean TEST = true;
 
+    //标记用户和管理员是否登录成功
+    public static final String SESSION_USER_LOGIN ="userLogin";
+
     public static final String SESSION_USER_ID = "userId";
     public static final String SESSION_USER_ROLE = "userRole";
     public static final String SESSION_USER_LOGIN_CNT = "userLoginCnt";

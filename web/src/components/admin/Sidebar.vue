@@ -52,11 +52,11 @@ export default {
     return {
       collapse: false,
       items: [
-        {
-          icon: 'el-icon-mxblr-instrument',
-          index: 'admininstrument',
-          title: '仪表盘'
-        },
+        // {
+        //   icon: 'el-icon-mxblr-instrument',
+        //   index: 'admininstrument',
+        //   title: '仪表盘'
+        // },
         {
           icon: 'el-icon-mxblr-article',
           index: '2',
@@ -81,7 +81,7 @@ export default {
           ]
         },
         {
-          icon: 'el-icon-mxblr-article',
+          icon: 'el-icon-mxblr-people',
           index: '3',
           title: '用户管理',
           subs: [
@@ -89,12 +89,10 @@ export default {
               index: 'adminuserList',
               title: '用户列表',
             }
-
           ]
-
         },
         {
-          icon: 'el-icon-mxblr-article',
+          icon: 'el-icon-mxblr-image',
           index: '4',
           title: '图片管理',
           subs: [
@@ -102,9 +100,7 @@ export default {
               index: 'adminImageList',
               title: '图片列表',
             }
-
           ]
-
         }
       ]
     }

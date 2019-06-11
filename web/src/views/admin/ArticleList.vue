@@ -63,6 +63,8 @@
         </el-table-column>
       </el-table>
     </div>
+
+    <!--编辑文章对话框-->
     <el-dialog :visible.sync="editSwitch"
                fullscreen>
       <el-form>
@@ -103,8 +105,9 @@
                     :autosize="{ minRows: 30,maxRows: 30}"
                     placeholder="文本内容"></el-input>
         </el-form-item>
+
         <el-form-item>
-          <el-button @click="addArticle"
+          <el-button @click="modifyArticle"
                      type="primary">提交</el-button>
         </el-form-item>
       </el-form>
@@ -122,6 +125,7 @@ export default {
       tagList: [],
       imageList: [],
       form: {
+        articleId: '',
         title: '',
         content: '',
         tagId: null,
@@ -135,6 +139,7 @@ export default {
       this.getArticle(row.articleId);
       this.getTagList();
       this.getImageList();
+      this.form.articleId = row.articleId;
       this.editSwitch = true;
     },
     handleDelete (row) {
@@ -213,11 +218,13 @@ export default {
         console.log(err);
       })
     },
-    addArticle () {
+    modifyArticle () {
       let that = this;
-      this.$axios.post(this.URL_DEFINE_ROOT + '/article/addArticle', this.form).then(function (res) {
+      this.$axios.post(this.URL_DEFINE_ROOT + '/article/modifyArticle', this.form).then(function (res) {
         if (res.data.status == "success") {
           that.$message.success("success");
+          that.editSwitch = false;
+          that.getArticleList();
         } else {
           that.$message.error(res.data.data.errMsg);
         }

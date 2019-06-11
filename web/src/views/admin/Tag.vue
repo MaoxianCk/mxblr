@@ -63,7 +63,6 @@
       </div>
     </el-dialog>
   </div>
-
 </template>
 
 <script>
@@ -76,7 +75,7 @@ export default {
       addSwitch: false,
       editSwitch: false,
       form: {
-        tagId:'',
+        tagId: '',
         name: '',
       },
     }
@@ -123,7 +122,7 @@ export default {
         if (res.data.status == "success") {
           that.$message.success("添加成功");
           that.getTagList();
-          that.addSwitch=false;
+          that.addSwitch = false;
         } else {
           that.$message.error(res.data.data.errMsg);
         }
@@ -140,12 +139,12 @@ export default {
       let that = this;
       let params = new URLSearchParams();
       params.append('name', this.form.name);
-      params.append('tagId',this.form.tagId);
+      params.append('tagId', this.form.tagId);
       this.$axios.post(this.URL_DEFINE_ROOT + '/tag/modifyTag', params).then(function (res) {
         if (res.data.status == "success") {
           that.$message.success("修改成功");
           that.getTagList();
-          that.editSwitch=false;
+          that.editSwitch = false;
         } else {
           that.$message.error(res.data.data.errMsg);
         }

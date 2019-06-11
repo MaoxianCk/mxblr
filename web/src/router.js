@@ -23,33 +23,37 @@ export default new Router({
       path: '/admin',
       component: resolve => require(['./components/admin/Home.vue'], resolve),
       children: [
-        {
-          path: '/admininstrument',
-          component: resolve => require(['./views/admin/Instrument.vue'], resolve)
-        },
+        // {
+        //   path: '/admininstrument',
+        //   component: resolve => require(['./views/admin/Instrument.vue'], resolve)
+        // },
         {
           path: '/adminarticleList',
-          component: resolve => require(['./views/admin/ArticleList.vue'], resolve)
+          component: resolve =>
+            require(['./views/admin/ArticleList.vue'], resolve)
         },
         {
           path: '/adminarticleEdit',
-          component: resolve => require(['./views/admin/ArticleEdit.vue'], resolve)
+          component: resolve =>
+            require(['./views/admin/ArticleEdit.vue'], resolve)
         },
         {
           path: '/admintag',
-          component: resolve => require(['./views/admin/Tag.vue'], resolve),
+          component: resolve => require(['./views/admin/Tag.vue'], resolve)
         },
         {
           path: '/CommentList',
-          component: resolve => require(['./views/admin/CommentList.vue'], resolve),
+          component: resolve =>
+            require(['./views/admin/CommentList.vue'], resolve)
         },
         {
           path: '/adminuserList',
-          component: resolve => require(['./views/admin/UserList.vue'], resolve),
+          component: resolve => require(['./views/admin/UserList.vue'], resolve)
         },
         {
           path: '/adminImageList',
-          component: resolve => require(['./views/admin/imageList.vue'], resolve),
+          component: resolve =>
+            require(['./views/admin/imageList.vue'], resolve)
         }
       ]
     },

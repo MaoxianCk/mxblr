@@ -1,6 +1,6 @@
 package com.mxblr.controller.admin;
 
-import com.mxblr.controller.user.BaseController;
+import com.mxblr.controller.BaseController;
 import com.mxblr.data.vo.admin.AdminArticleCommentVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.response.CommonReturnType;
@@ -24,7 +24,6 @@ public class AdminCommentController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 获取评论列表带标题
      */
     @GetMapping("getArticleCommentWithArticle")
@@ -36,7 +35,6 @@ public class AdminCommentController extends BaseController {
     }
 
     /**
-     * @author Kny
      * 通过改变status审核评论和逻辑删除评论
      */
     @PostMapping("modifyCommentStatus")

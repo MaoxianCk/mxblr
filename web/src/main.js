@@ -18,9 +18,12 @@ Vue.prototype.$axios = axios
 router.beforeEach((to, from, next) => {
   const role = sessionStorage.getItem('role')
   const userId = sessionStorage.getItem('userId')
-  
+
+  if (role != null && userId != null && to.path === '/admin') {
+    next('/')
+  }
   if (role != null && userId != null && to.path === '/adminlogin') {
-    next('/admininstrument')
+    next('/adminarticleList')
   }
   if (to.path === '/' || to.path === '/article') {
     next()

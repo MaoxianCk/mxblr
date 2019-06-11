@@ -1,9 +1,10 @@
 package com.mxblr.controller.admin;
 
-import com.mxblr.controller.user.BaseController;
+import com.mxblr.controller.BaseController;
 import com.mxblr.data.dataObject.ArticleDO;
-import com.mxblr.data.vo.ArticleAddVO;
-import com.mxblr.data.vo.AdminArticleInfoListVO;
+import com.mxblr.data.vo.admin.AdminArticleAddVO;
+import com.mxblr.data.vo.admin.AdminArticleInfoVO;
+import com.mxblr.data.vo.admin.AdminArticleModifyVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.response.CommonReturnType;
@@ -21,7 +22,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author Ck
  * #date 2019/05/24 22:39
  */
 @RequestMapping("/admin/article/")
@@ -35,37 +35,34 @@ public class AdminArticleController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 获取后台的文章列表
      */
     @GetMapping("getAdminArticleInfoList")
     @ResponseBody
     public CommonReturnType getAdminArticleInfoList() throws BusinessException {
         MyLog.info("Request : /admin/article/getAdminArticleInfoList");
-        List<AdminArticleInfoListVO> list = articleService.getAdminArticleInfoList();
+        List<AdminArticleInfoVO> list = articleService.getAdminArticleInfoList();
         return CommonReturnType.create(list);
     }
 
     /**
-     * @author Ck
      * 增加文章
      */
     @PostMapping("addArticle")
     @ResponseBody
-    public CommonReturnType addArticle(@RequestBody @Valid ArticleAddVO articleAddVO,
+    public CommonReturnType addArticle(@RequestBody @Valid AdminArticleAddVO adminArticleAddVO,
                                        BindingResult result,
                                        HttpServletRequest httpServletRequest) throws BusinessException {
         MyValidation.validateObject(EmBusinessErr.ARTICLE_ADD_ERROR, result);
-        MyLog.info("Request : /admin/article/addArticle\t[ articleAddVO:" + articleAddVO + " ]");
+        MyLog.info("Request : /admin/article/addArticle");
         //获取用户id
         Integer userId = (Integer) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ID);
         MyValidation.checkIntNull(userId);
-        articleService.addArticle(articleAddVO, userId);
+        articleService.addArticle(adminArticleAddVO, userId);
         return CommonReturnType.create(null);
     }
 
     /**
-     * @author Ck
      * 彻底删除文章
      */
     @PostMapping("deleteArticle")
@@ -82,7 +79,6 @@ public class AdminArticleController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 设置文章状态
      */
     @PostMapping("modifyArticleStatus")
@@ -101,29 +97,27 @@ public class AdminArticleController extends BaseController {
     }
 
     /**
-     * @author Ck
      * 修改文章
      */
     @PostMapping("modifyArticle")
     @ResponseBody
-    public CommonReturnType modifyArticle(@RequestBody @Valid ArticleAddVO articleAddVO,
+    public CommonReturnType modifyArticle(@RequestBody @Valid AdminArticleModifyVO adminArticleModifyVO,
                                           BindingResult result,
                                           HttpServletRequest httpServletRequest) throws BusinessException {
         Byte role = (Byte) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ROLE);
         Integer userId = (Integer) MySessionUtil.getAttribute(httpServletRequest, Constants.SESSION_USER_ID);
-        MyValidation.checkIntNull(articleAddVO.getArticleId());
+        MyValidation.checkIntNull(adminArticleModifyVO.getArticleId());
         MyValidation.validateObject(EmBusinessErr.ARTICLE_UPDATE_ERROR, result);
         //TODO 普通写手只能修改自己的文章
-        MyLog.info("Request : /admin/article/modifyArticle\t[ articleAddVO: " + articleAddVO + " ]");
-        ArticleDO articleDO = articleService.getArticleById(articleAddVO.getArticleId());
+        MyLog.info("Request : /admin/article/modifyArticle");
+        ArticleDO articleDO = articleService.getArticleById(adminArticleModifyVO.getArticleId());
         if (role == Constants.USER_ROLE_SUPER_ADMIN || role == Constants.USER_ROLE_ADMIN || articleDO.getUserId().equals(userId)) {
-            articleService.modifyArticle(articleAddVO);
+            articleService.modifyArticle(adminArticleModifyVO);
         }
         return CommonReturnType.create(null);
     }
 
     /**
-     * @author Ck
      * 判断状态信息是否合法
      */
     private boolean checkStatus(Byte... status) throws BusinessException {

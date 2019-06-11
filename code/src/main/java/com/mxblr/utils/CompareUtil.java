@@ -3,13 +3,11 @@ package com.mxblr.utils;
 import java.lang.reflect.Field;
 
 /**
- * @author Ck
  * #date 2019/03/26 19:38
  */
 public final class CompareUtil {
 
     /**
-     * @author Ck
      * 判断DO VO中相同属性的值是否相等，相同则将DO中置为null，否则设为VO值，返回结构为DO，并且当DO为null时，表示DO VO相同字段完全相同
      */
     public static Object CompareDOVO(Object DO, Object VO) {

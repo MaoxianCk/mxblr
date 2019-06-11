@@ -3,7 +3,6 @@ package com.mxblr.utils;
 import java.util.Random;
 
 /**
- * @author Ck
  * #date 2019/05/28 21:06
  */
 public final class SaltUtil {

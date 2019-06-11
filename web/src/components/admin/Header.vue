@@ -5,7 +5,7 @@
          @click="collapseChage">
       <i class="el-icon-menu"></i>
     </div>
-    <div class="logo">毛线球上的喵星人</div>
+    <div class="logo" @click="jumpTo">毛线球上的喵星人</div>
     <div class="header-right">
       <div class="header-user-con">
         <!-- 用户头像 -->
@@ -37,7 +37,6 @@
                    center>
           <el-form ref="userInfoForm"
                    :model="userInfoForm"
-                   :rules="rules"
                    label-width="100px">
             <el-form-item prop="name"
                           label="昵称：">
@@ -69,7 +68,6 @@
                    center>
           <el-form ref="userPasswordForm"
                    :model="userPasswordForm"
-                   :rules="rules"
                    label-width="100px">
             <el-form-item prop="password"
                           label="新密码：">
@@ -95,7 +93,7 @@ import bus from '../../assets/js/bus.js';
 export default {
   data () {
     return {
-      URL_DEFINE_ROOT: '/local/',
+      URL_DEFINE_ROOT: '/local/admin',
       collapse: false,
       name: '',
       editUserInfoSwitch: false,
@@ -116,6 +114,9 @@ export default {
     this.name = sessionStorage.getItem("name");
   },
   methods: {
+    jumpTo(){
+      this.$router.push('/');
+    },
     handleClose (done) {
       let that = this;
       this.$confirm("确认关闭？")
@@ -153,11 +154,20 @@ export default {
         "userId": sessionStorage.getItem("userId"),
         "userInfoId": sessionStorage.getItem("userInfoId")
       }
-      this.$axios.post(this.URL_DEFINE_ROOT + '/maoxianUser/modifyUserInfo', data).then(function (res) {
+      if (data.name == "") {
+        data.name = null;
+      }
+      if (data.email == "") {
+        data.email = null;
+      }
+      if (data.phoneNumber == "") {
+        data.phoneNumber = null;
+      }
+      this.$axios.post(this.URL_DEFINE_ROOT + '/user/modifyUserInfo', data).then(function (res) {
         if (res.data.status == "success") {
           that.$message.success("success");
           sessionStorage.setItem("name", that.userInfoForm.name);
-          that.name = that.userInfoForm.name;
+          that.name = sessionStorage.getItem("name");
           that.clearForm();
           that.editUserInfoSwitch = false;
         } else {
@@ -169,7 +179,7 @@ export default {
     },
     modifyUserPassword () {
       let that = this;
-      this.$axios.post(this.URL_DEFINE_ROOT + '/maoxianUser/modifyPassword', QS.stringify({
+      this.$axios.post(this.URL_DEFINE_ROOT + '/user/modifyPassword', QS.stringify({
         password: this.userPasswordForm.password,
         userId: sessionStorage.getItem("userId")
       })).then(function (res) {
@@ -211,6 +221,7 @@ export default {
 </script>
 <style scoped>
 .header {
+  background-image: none;
   position: relative;
   box-sizing: border-box;
   width: 100%;
@@ -228,6 +239,10 @@ export default {
   float: left;
   width: 250px;
   line-height: 70px;
+}
+
+.logo{
+  cursor: pointer;
 }
 .header-right {
   float: right;

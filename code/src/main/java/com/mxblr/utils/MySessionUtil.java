@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
  */
 public final class MySessionUtil {
 
-
     /**
      * 获取session中的属性值
      */
@@ -46,10 +45,10 @@ public final class MySessionUtil {
      */
     public static void checkSessionRole(HttpServletRequest request) throws BusinessException {
         HttpSession session = request.getSession();
-        Byte role = (Byte)getAttribute(request,Constants.SESSION_USER_ROLE);
-        Integer id = (Integer)getAttribute(request,Constants.SESSION_USER_ID);
-        if(role!=Constants.USER_ROLE_SUPER_ADMIN && role!=Constants.USER_ROLE_ADMIN && role!=Constants.USER_ROLE_WRITER){
-            MyLog.error("角色权限异常 role : "+role);
+        Byte role = (Byte) getAttribute(request, Constants.SESSION_USER_ROLE);
+        Integer id = (Integer) getAttribute(request, Constants.SESSION_USER_ID);
+        if (role != Constants.USER_ROLE_SUPER_ADMIN && role != Constants.USER_ROLE_ADMIN && role != Constants.USER_ROLE_WRITER) {
+            MyLog.error("角色权限异常 role : " + role);
             throw new BusinessException(EmBusinessErr.PARAMETER_INVALIDATION_ERROR, "登录状态错误");
         }
     }

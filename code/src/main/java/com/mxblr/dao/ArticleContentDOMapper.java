@@ -26,7 +26,6 @@ public interface ArticleContentDOMapper {
     int updateByPrimaryKey(ArticleContentDO record);
 
     /**
-     * @author Ck
      * 添加文章内容
      */
     @Insert("INSERT INTO article_content (article_id, content)\n" +
@@ -35,7 +34,6 @@ public interface ArticleContentDOMapper {
     void addArticleContent(Integer articleId, String content);
 
     /**
-     * @author Ck
      * 删除文章内容
      */
     @Delete("DELETE\n" +
@@ -46,12 +44,11 @@ public interface ArticleContentDOMapper {
     void deleteByArticleId(Integer articleId);
 
     /**
-     * @author Ck
      * 修改文章内容
      */
     @Update("UPDATE article_content\n" +
-            "SET content = #{id}\n" +
+            "SET content = #{content}\n" +
             "WHERE\n" +
-            "	article_id = #{content}")
+            "	article_id = #{id}")
     void updateByArticleId(Integer id, String content);
 }

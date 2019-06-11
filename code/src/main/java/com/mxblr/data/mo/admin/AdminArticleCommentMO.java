@@ -3,7 +3,6 @@ package com.mxblr.data.mo.admin;
 import java.util.Date;
 
 /**
- * @author Kny
  * 2019/06/09
  */
 public class AdminArticleCommentMO {

@@ -19,7 +19,10 @@
         </el-table-column>
         <el-table-column width="150">
           <template slot-scope="scope">
-            <i><el-link target="_blank" :href="'http://'+scope.row.site">{{scope.row.site}}</el-link></i>
+            <i>
+              <el-link target="_blank"
+                       :href="'http://'+scope.row.site">{{scope.row.site}}</el-link>
+            </i>
           </template>
         </el-table-column>
       </el-table>
@@ -80,7 +83,7 @@ export default {
   },
   mounted () {
     this.$nextTick(function () {
-      setInterval(this.timer, 30000);
+      setInterval(this.timer, 7000);
     })
   },
   methods: {
@@ -164,6 +167,11 @@ export default {
   background-position-x: 50%;
   background-size: cover;
   text-align: center;
+
+  /* -webkit-filter: blur(10px); Chrome, Opera
+       -moz-filter: blur(10px);
+        -ms-filter: blur(10px);    
+            filter: blur(10px); */
 }
 .headerTitle {
   position: relative;
@@ -197,13 +205,13 @@ h4 {
 h6 {
   margin-top: 22px;
 }
-.site :hover{
+.site :hover {
   color: rgb(235, 72, 72);
 }
-.site :active{
+.site :active {
   color: rgb(235, 72, 72);
 }
-.site{
+.site {
   color: #909399;
 }
 </style>

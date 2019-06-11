@@ -2,7 +2,7 @@ package com.mxblr.dao;
 
 import com.mxblr.data.dataObject.ArticleCommentDO;
 import com.mxblr.data.mo.admin.AdminArticleCommentMO;
-import com.mxblr.data.vo.ArticleCommentViewVO;
+import com.mxblr.data.vo.user.ArticleCommentVO;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,6 @@ public interface ArticleCommentDOMapper {
     int updateByPrimaryKey(ArticleCommentDO record);
 
     /**
-     * @author Ck
      * 根据文章id获取评论信息
      */
     @Select("SELECT\n" +
@@ -37,10 +36,9 @@ public interface ArticleCommentDOMapper {
             "WHERE\n" +
             "	article_id = #{id}\n" +
             "AND status = 1")
-    List<ArticleCommentViewVO> selectByArticleId(Integer id);
+    List<ArticleCommentVO> selectByArticleId(Integer id);
 
     /**
-     * @author Ck
      * 根据文章id逻辑删除评论
      */
     @Update("update\n" +
@@ -52,7 +50,6 @@ public interface ArticleCommentDOMapper {
     void deleteByArticleId(Integer articleId);
 
     /**
-     * @author Ck
      * 查找所有评论和对应的文章的题目和id
      */
     @Select("SELECT\n" +
@@ -75,7 +72,6 @@ public interface ArticleCommentDOMapper {
     List<AdminArticleCommentMO> selectWithArticle();
 
     /**
-     * @author Kny
      * 通过改变status审核评论和逻辑删除评论
      */
     @Update("update article_comment set status = #{status} where comment_id = #{commentId}")

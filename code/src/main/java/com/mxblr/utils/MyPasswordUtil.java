@@ -3,12 +3,10 @@ package com.mxblr.utils;
 import com.mxblr.error.BusinessException;
 
 /**
- * @author Ck
  * #date 2019/05/28 21:35
  */
 public final class MyPasswordUtil {
     /**
-     * @author Ck
      * 根据盐和密码获取二次加密后的密码
      */
     public static String getPassword(String psw, String salt) throws BusinessException {

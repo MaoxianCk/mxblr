@@ -9,7 +9,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 /**
- * @author Ck
  * #date 2019/05/16 10:50
  */
 @Configuration

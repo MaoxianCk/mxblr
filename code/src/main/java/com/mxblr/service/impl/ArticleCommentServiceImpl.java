@@ -3,8 +3,8 @@ package com.mxblr.service.impl;
 import com.mxblr.dao.ArticleCommentDOMapper;
 import com.mxblr.data.dataObject.ArticleCommentDO;
 import com.mxblr.data.mo.admin.AdminArticleCommentMO;
-import com.mxblr.data.vo.ArticleCommentAddVO;
-import com.mxblr.data.vo.ArticleCommentViewVO;
+import com.mxblr.data.vo.user.ArticleCommentAddVO;
+import com.mxblr.data.vo.user.ArticleCommentVO;
 import com.mxblr.data.vo.admin.AdminArticleCommentVO;
 import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Ck
  * #date 2019/05/24 21:16
  */
 @Service
@@ -35,16 +34,14 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
     }
 
     /**
-     * @author Ck
      * 根据文章id获取评论信息
      */
     @Override
-    public List<ArticleCommentViewVO> getCommentsByArticleId(Integer articleId) {
+    public List<ArticleCommentVO> getCommentsByArticleId(Integer articleId) {
         return articleCommentDOMapper.selectByArticleId(articleId);
     }
 
     /**
-     * @author Ck
      * 获取后台的评论列表
      */
     @Override
@@ -70,7 +67,6 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
     }
 
     /**
-     * @author Lrh
      * 增加评论
      */
     @Override
@@ -94,7 +90,6 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
     }
 
     /**
-     * @author Kny
      * 审核评论和逻辑删除评论
      */
     @Override

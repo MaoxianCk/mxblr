@@ -16,19 +16,18 @@
         <el-select v-model="form.imageId"
                    class="ml10">
           <el-popover v-for="(item,index) in imageList"
-                       :key="index"
+                      :key="index"
                       placement="right"
                       title=""
-                      trigger="hover"
-                      >
+                      trigger="hover">
             <el-option :label="item.name"
                        :value="item.imageId"
                        slot="reference">
             </el-option>
             <el-image style="width: 350px; height: 165px"
-                        :src="item.image"
-                        fit="contain">
-              </el-image>
+                      :src="item.image"
+                      fit="contain">
+            </el-image>
           </el-popover>
         </el-select>
       </el-form-item>
@@ -56,7 +55,7 @@ export default {
         title: '',
         content: '',
         tagId: null,
-        imageId:null,
+        imageId: null,
       }
     }
   },
@@ -90,6 +89,7 @@ export default {
       this.$axios.post(this.URL_DEFINE_ROOT + '/article/addArticle', this.form).then(function (res) {
         if (res.data.status == "success") {
           that.$message.success("success");
+          that.$router.push('/adminarticleList');
         } else {
           that.$message.error(res.data.data.errMsg);
         }

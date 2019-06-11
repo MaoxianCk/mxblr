@@ -5,7 +5,6 @@ import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Ck
  * #date 2019/05/28 23:00
  */
 public class MyIpUtil {
@@ -26,7 +25,7 @@ public class MyIpUtil {
                 return ipToLong(ip);
             }
             return ipToLong(request.getRemoteAddr());
-        }catch (Exception e){
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -49,8 +48,7 @@ public class MyIpUtil {
         }
     }
 
-    public static String longToIp(long ip)
-    {
+    public static String longToIp(long ip) {
         StringBuilder sb = new StringBuilder();
         //直接右移24位
         sb.append(ip >> 24);
