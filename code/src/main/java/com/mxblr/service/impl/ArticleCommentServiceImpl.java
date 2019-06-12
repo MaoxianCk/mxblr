@@ -10,6 +10,7 @@ import com.mxblr.error.BusinessException;
 import com.mxblr.error.EmBusinessErr;
 import com.mxblr.service.ArticleCommentService;
 import com.mxblr.utils.Constants;
+import com.mxblr.utils.Filter;
 import com.mxblr.utils.MyIpUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,11 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
     public void addComment(ArticleCommentAddVO articleCommentAddVO, HttpServletRequest request) throws BusinessException {
         ArticleCommentDO articleCommentDO = new ArticleCommentDO();
         BeanUtils.copyProperties(articleCommentAddVO, articleCommentDO);
+
+        articleCommentDO.setContent(Filter.xssFilter(articleCommentDO.getContent()));
+        articleCommentDO.setName(Filter.xssFilter(articleCommentDO.getName()));
+        articleCommentDO.setEmail(Filter.xssFilter(articleCommentDO.getContent()));
+        articleCommentDO.setSite(Filter.xssFilter(articleCommentDO.getSite()));
 
         Byte status = Constants.COMMENT_STATUS_NOT_APPROVE;
         articleCommentDO.setStatus(status);

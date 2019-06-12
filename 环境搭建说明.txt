@@ -1,0 +1,10 @@
+后端环境说明：
+开发环境为idea+Mysql5.7.25+Maven
+数据库设计使用PowerDesigner设计
+数据库端口为3306，账号为root，密码为123456
+code文件夹中为后端代码，使用Maven做项目依赖管理
+使用git做代码管理，代码托管为github private仓库
+
+前端环境说明：
+开发环境为Node.js+vue-cli+vscode
+前端搭建说明：vscode打开项目文件夹，使用npm install命令安装依赖包,使用npm server运行前端服务器,localhost:8888为前端页面地址

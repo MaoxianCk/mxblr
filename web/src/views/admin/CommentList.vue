@@ -18,6 +18,10 @@
         </el-table-column>
         <el-table-column label="文章标题"
                          prop="title">
+                         <template slot-scope="scope">
+                           <el-link target="_blank"
+                     :href="'/article?id='+scope.row.articleId">{{scope.row.title}}</el-link>
+                         </template>
         </el-table-column>
         <el-table-column prop="name"
                          label="评论者">

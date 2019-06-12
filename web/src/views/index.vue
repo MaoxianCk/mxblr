@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-backtop></el-backtop>
     <div class="header">
       <div class="headerTitle">
         <h1>毛线球上的喵星人</h1>
@@ -9,23 +10,30 @@
       <div class="articleInfo"
            v-for="(item,index) in articleInfo"
            :key="index">
-        <img :src="item.image">
-        <div class="articleTitle"
+        <img :src="item.image"
+             class="cursor"
+             @click="jumpTo(item.articleId)">
+        <div class="articleTitle cursor"
              @click="jumpTo(item.articleId)">{{item.title}}</div>
         <div class="articleDetail">{{item.createdTime}}</div>
         <div class="articleSummary">{{item.summary}}</div>
         <div class="spitLine"></div>
       </div>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
+import vFooter from '../components/Footer'
 export default {
   data: function () {
     return {
       URL_DEFINE_ROOT: '/local/',
       articleInfo: [],
     }
+  },
+  components:{
+    vFooter,
   },
   methods: {
     jumpTo (id) {
@@ -49,7 +57,10 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
+.cursor{
+  cursor: pointer;
+}
 .header {
   top: 0;
   height: 560px;
@@ -64,7 +75,7 @@ export default {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
   color: #fff;
 }
 .textContainer {
@@ -113,7 +124,6 @@ export default {
 }
 
 .articleTitle:hover {
-  cursor: pointer;
   color: #2aabd2;
   text-decoration-line: none;
 }

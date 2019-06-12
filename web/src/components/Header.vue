@@ -1,14 +1,25 @@
 <template>
-    <el-header>
-        header
-    </el-header>
+  <div class="headerNav">
+    header
+  </div>
 </template>
 
-<style scope>
-.el-header {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
+<style scoped>
+.headerNav :hover  {
+  /* opacity:0; */
+  background-color: #b3c0d1;
+  /* display:inline; */
+  /* z-index: 100; */
+}
+.headerNav {
+  /* opacity:0.5; */
+  background-color: #b31;
+  height: 50px;
+  width: 100%;
+  position:absolute;
+  top: 0;
+  z-index: 100;
+  /* display:block; */
+  
+}
 </style>

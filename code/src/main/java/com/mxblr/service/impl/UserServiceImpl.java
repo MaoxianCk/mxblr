@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserInfoDO userLogin(String account, String password, HttpServletRequest request) throws BusinessException {
+        account = Filter.xssFilter(account);
+        password = Filter.xssFilter(password);
         UserDO userDO;
         List<UserDO> list = userDOMapper.selectByAccount(account);
         if (list.isEmpty()) {

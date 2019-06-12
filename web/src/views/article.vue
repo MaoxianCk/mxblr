@@ -1,9 +1,16 @@
 <template>
   <div>
-    <div class="header">
-      <div class="headerTitle">
-        <h1>{{article.articleInfo.title}}</h1>
+    <el-backtop></el-backtop>
+    <div class="header"
+         :style="'background-image:url('+article.articleInfo.image+')'">
+      <div class="headerInner" :style="'background-color:'+getImageColor()">
       </div>
+    </div>
+    <div class="headerImg">
+      <el-image :src="article.articleInfo.image"></el-image>
+    </div>
+    <div class="headerTitle">
+      <h1>{{article.articleInfo.title}}</h1>
     </div>
     <div class="textContainer">
       <div v-html="article.content"></div>
@@ -54,10 +61,15 @@
         </el-form-item>
       </el-form>
     </div>
+    <v-footer></v-footer>
   </div>
 </template>
 <script>
+import vFooter from '../components/Footer.vue';
 export default {
+  components:{
+    vFooter,
+  },
   data: function () {
     return {
       URL_DEFINE_ROOT: '/local/',
@@ -70,6 +82,7 @@ export default {
         site: '',
         content: '',
       },
+      color:'',
       commentList: [],
       dividerArray: [
         "头上一片晴天，心中一个想念",
@@ -77,13 +90,23 @@ export default {
         "过了这个村，依旧有这个店，因为是连锁店",
         "一个人的作业做错了，结果全班人的都错了...",
         "胖的原因大概就是，瘦小的身躯，容不下我伟大的人格",
+        "你看一晃两三年，匆匆又夏天",
+        "得之我幸，失之我命，如此而已",
+        "梦短梦长俱是梦，年来年去是何年",
+        "但得夕阳无限好，何须惆怅近黄昏",
+        "吹灭读书灯，一身都是月",
+        "反正山高水长,我还有一生可以嚣张",
+        "\"你笑时，雷声温柔，暴雨无声\"",
+        "#define mian main",
+        "Hello World",
+        "#define true false",
       ],
       dividerContent: '头上一片晴天，心中一个想念',
     }
   },
   mounted () {
     this.$nextTick(function () {
-      setInterval(this.timer, 7000);
+      setInterval(this.timer, 10000);
     })
   },
   methods: {
@@ -101,8 +124,9 @@ export default {
       if (this.articleId != null) {
         this.$axios.get(this.URL_DEFINE_ROOT + '/user/article/getArticleById', { params: { articleId: this.articleId } }).then(function (res) {
           if (res.data.status == "success") {
-            that.article = res.data.data;
             console.clear();
+            that.article = res.data.data;
+            that.color = that.getImageColor();
           } else {
             that.$message.error(res.data.data.errMsg);
           }
@@ -151,7 +175,36 @@ export default {
       }).catch(function (err) {
         console.log(err);
       })
-    }
+    },
+    getImageColor () {
+      let canvas = document.createElement('canvas'); 
+      var img = new Image();
+      img.src=this.article.articleInfo.image;
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var context = canvas.getContext("2d");
+      context.drawImage(img, 0, 0);
+      // 获取像素数据
+      var data = context.getImageData(0, 0, img.width, img.height).data;
+      let r = 0, g = 0, b = 0;
+      // 取所有像素的平均值
+      for (var row = 0; row < img.height; row++) {
+        for (var col = 0; col < img.width; col++) {
+          r += data[((img.width * row) + col) * 4];
+          g += data[((img.width * row) + col) * 4 + 1];
+          b += data[((img.width * row) + col) * 4 + 2];
+        }
+      }
+      // 求取平均值
+      r /= (img.width * img.height);
+      g /= (img.width * img.height);
+      b /= (img.width * img.height);
+      // 将最终的值取整
+      r = Math.round(r);
+      g = Math.round(g);
+      b = Math.round(b);
+      return "rgb(" + r + "," + g + "," + b + ",0.97)";
+    },
   },
   created () {
     this.getArticle();
@@ -159,22 +212,33 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
+.headerImg{
+  height:220px;
+  width:700px;
+  background-size: cover;
+  /* position:absolute; */
+  border: #fff 5px solid;
+  margin: -110px auto;
+  z-index: -1;
+}
+
+.headerInner {
+  top: 0;
+  height: 560px;
+}
 .header {
   top: 0;
   height: 560px;
+
   background-image: url("../assets/img/background.jpg");
   background-position-x: 50%;
-  background-size: cover;
-  text-align: center;
-
-  /* -webkit-filter: blur(10px); Chrome, Opera
-       -moz-filter: blur(10px);
-        -ms-filter: blur(10px);    
-            filter: blur(10px); */
+  background-size: auto 100%;
+  text-align: cover;
+  background-repeat: no-repeat;
 }
 .headerTitle {
-  position: relative;
+  position: absolute;
   top: 150px;
   width: 100%;
   margin: 0 auto;
@@ -187,7 +251,7 @@ export default {
   background-color: #fff;
   width: 700px;
   min-height: 300px;
-  margin: 50px auto;
+  margin: 130px auto 50px;
   color: #333;
   font-size: 16px;
   line-height: 1.75;
